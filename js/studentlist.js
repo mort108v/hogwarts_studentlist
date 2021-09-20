@@ -24,10 +24,10 @@ let allStudentVariables = {
     inquisitorialSquad: []
 }
 
-loadJSON
+
 
 // async function loadJSON()
-async function loadJSON() {
+export async function loadJSON() {
     const response = await fetch("https://petlatkea.dk/2021/hogwarts/students.json")
     const jsonData = await response.json()
     prepareObjects(jsonData)
@@ -38,9 +38,37 @@ function prepareObjects(jsonData) {
     console.log("JSON Loaded")
     allStudentVariables.allStudents = jsonData.map(makeStudents)
     allStudentVariables.filteredStudents = allStudentVariables.allStudents
-        // displayList(allStudents)
+    displayList(allStudentVariables.allStudents)
 }
 
+
+//Display List of students
+function displayList(students) {
+    // clear the list
+    document.querySelector("#list tbody").innerHTML = ""
+
+    // build a new list
+    students.forEach(displayStudent)
+}
+
+function displayStudent(student) {
+
+    // create clone
+    const clone = document.querySelector("template#student").content.cloneNode(true)
+
+    // set clone data
+    clone.querySelector("[data-field=firstname]").textContent = student.firstname
+    clone.querySelector("[data-field=middlename]").textContent = student.middlename
+    clone.querySelector("[data-field=lastname]").textContent = student.lastname
+    clone.querySelector("[data-field=nickname]").textContent = student.nickname
+    clone.querySelector("[data-field=gender]").textContent = student.gender
+    clone.querySelector("[data-field=bloodstatus]").textContent = student.bloodstatus
+    clone.querySelector("[data-field=house]").textContent = student.house
+    clone.querySelector(".student-photo").src = student.image
+
+    // append clone to list
+    document.querySelector("#list tbody").appendChild(clone)
+}
 // function makeStudents(jsonObject)
 // 	firstName | middleName | lastName | nickname | gender | house | isPureblood | isHalfblood | isPlainMuggle | isPrefect | isInquis
 function makeStudents(jsonObject) {
@@ -92,7 +120,7 @@ function makeStudents(jsonObject) {
     return student
 }
 
-export { allStudentVariables, Student }
+// export { allStudentVariables }
 
 
 // Sort students
