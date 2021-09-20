@@ -270,15 +270,18 @@ function clickFilterButton(filterButton) {
 }
 
 function filterStudents(filter) {
-    console.log("Filtering My Students");
-
 
     let filtered = allStudentVariables.filteredStudents
     let allStudents = allStudentVariables.allStudents
 
-    filtered = [];
+    filtered = []
 
-    if (filter === 'prefect') {
+    //     if (filter === student.house) {
+    //         filtered = allStudents.filter(house)
+    //     }
+    //     return filtered
+    // }
+    if (filter === "prefect") {
         filtered = allStudents.filter(isPrefect)
     } else if (filter === "inquis") {
         filtered = allStudents.filter(isInquis)
@@ -296,6 +299,8 @@ function filterStudents(filter) {
 
     return filtered
 }
+
+// DO SOMETHING WITH = forEach(house) --- if (student.house === filter) return true
 
 // Students afilliation functions
 // function checkStudentAfilliation(student) {
