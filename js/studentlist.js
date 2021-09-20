@@ -16,12 +16,12 @@ const Student = {
 }
 
 let allStudentVariables = {
-    allStudents = [],
-    filter,
-    filteredStudents = [],
-    sortedStudents = [],
-    prefects = [],
-    inquisitorialSquad = []
+    allStudents: [],
+    // filter:,
+    filteredStudents: [],
+    sortedStudents: [],
+    prefects: [],
+    inquisitorialSquad: []
 }
 
 loadJSON
