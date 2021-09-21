@@ -1,7 +1,5 @@
 "use strict"
 
-
-
 const Student = {
     firstname: " ",
     middlename: " ",
@@ -17,12 +15,13 @@ const Student = {
 
 let allStudentVariables = {
     allStudents: [],
-    // filter:,
-    filteredStudents: [],
-    sortedStudents: [],
     prefects: [],
     inquisitorialSquad: []
 }
+
+let currentFilter = "*";
+let currentSort = "firstname";
+let currentSortDirection = "asc";
 
 export let allConstants = {
     filterButtons: document.querySelectorAll(`[data-action="filter"]`),
@@ -41,10 +40,8 @@ export async function loadJSON() {
 function prepareObjects(jsonData) {
     console.log("JSON Loaded")
     allStudentVariables.allStudents = jsonData.map(makeStudents)
-    allStudentVariables.filteredStudents = allStudentVariables.allStudents
     displayList(allStudentVariables.allStudents)
 }
-
 
 //Display List of students
 function displayList(students) {
@@ -59,8 +56,7 @@ function displayStudent(student) {
 
     // create clone
     const clone = document.querySelector("template#student").content.cloneNode(true)
-
-    // set clone data
+        // set clone data
     clone.querySelector("[data-field=firstname]").textContent = student.firstname
     clone.querySelector("[data-field=middlename]").textContent = student.middlename
     clone.querySelector("[data-field=lastname]").textContent = student.lastname
@@ -69,9 +65,12 @@ function displayStudent(student) {
     clone.querySelector("[data-field=bloodstatus]").textContent = student.bloodstatus
     clone.querySelector("[data-field=house]").textContent = student.house
     clone.querySelector(".student-photo").src = student.image
-
-    // append clone to list
+        // append clone to list
     document.querySelector("#list tbody").appendChild(clone)
+}
+
+function capitalize(name) {
+    return name.charAt(0).toUpperCase() + name.substring(1).toLowerCase()
 }
 // function makeStudents(jsonObject)
 // 	firstName | middleName | lastName | nickname | gender | house | isPureblood | isHalfblood | isPlainMuggle | isPrefect | isInquis
@@ -80,26 +79,25 @@ function makeStudents(jsonObject) {
 
     const student = Object.create(Student)
         // Student Full Name 
-    const studentFullName = jsonObject.fullname.substring(0).toLowerCase().trim()
+    const studentFullName = jsonObject.fullname.trim()
     const studentFullNameSplit = studentFullName.split(" ")
 
     // Student First Name
     const studentFirstname = studentFullNameSplit[0]
-    student.firstname = studentFirstname.charAt(0).toUpperCase() + studentFirstname.substring(1)
-
-    // Student Middle Name
+    student.firstname = capitalize(studentFirstname)
+        // Student Middle Name
     if (studentFullNameSplit.length > 2) {
         const studentMiddlename = studentFullNameSplit[1]
-        student.middlename = studentMiddlename.charAt(0).toUpperCase() + studentMiddlename.substring(1)
+        student.middlename = capitalize(studentMiddlename)
     }
 
     if (studentFullNameSplit.length > 2) {
         // Student Last Name
         const studentLastname = studentFullNameSplit[2]
-        student.lastname = studentLastname.charAt(0).toUpperCase() + studentLastname.substring(1)
+        student.lastname = capitalize(studentLastname)
     } else if (studentFullNameSplit.length == 2) {
         const studentLastnameTwo = studentFullNameSplit[1]
-        student.lastname = studentLastnameTwo.charAt(0).toUpperCase() + studentLastnameTwo.substring(1)
+        student.lastname = capitalize(studentLastnameTwo)
     }
 
     // Student Nickname
@@ -110,12 +108,12 @@ function makeStudents(jsonObject) {
     }
 
     // Student Gender
-    const studentGender = jsonObject.gender.substring().toLowerCase().trim()
-    student.gender = studentGender.charAt(0).toUpperCase() + studentGender.substring(1)
+    const studentGender = jsonObject.gender.trim()
+    student.gender = capitalize(studentGender)
 
     // Student House
-    const studentHouse = jsonObject.house.substring().toLowerCase().trim()
-    student.house = studentHouse.charAt(0).toUpperCase() + studentHouse.substring(1)
+    const studentHouse = jsonObject.house.trim()
+    student.house = capitalize(studentHouse)
 
     // Student Image
     const studentImageURL = "studentphotos/";
@@ -146,112 +144,33 @@ function clickSortButton(sortButton) {
     const sort = sortButton.target.dataset.sort;
     const sortDirection = sortButton.target.dataset.sortDirection;
 
-    console.log("Dataset", sortButton.target.dataset);
-
-    const sortedStudents = sortStudents(sort, sortDirection);
     sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc";
-    console.log("My Sorted Students ", sortedStudents);
 
-    displayList(sortedStudents);
+    selectSort(sort, sortDirection);
 }
 
-function sortStudents(sort, sortDirection, ) {
-    console.log("Sorting the student list", sort, allStudentVariables.filteredStudents);
+function selectSort(sort, direction) {
+    currentSort = sort;
+    currentSortDirection = direction;
 
-    switch (sort) {
-        case "firstname":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.firstname > b.firstname ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.firstname > b.firstname ? -1 : 1;
-                }
-            });
-            break;
-        case "middlename":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.middlename > b.middlename ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.middlename > b.middlename ? -1 : 1;
-                }
-            });
-            break;
-        case "lastname":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.lastname > b.lastname ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.lastname > b.lastname ? -1 : 1;
-                }
-            });
-            break;
-        case "nickname":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.nickname > b.nickname ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.nickname > b.nickname ? -1 : 1;
-                }
-            });
-            break;
-        case "housesort":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.house > b.house ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.house > b.house ? -1 : 1;
-                }
-            });
-            break;
-        case "inquis":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.inquis > b.inquis ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.inquis > b.inquis ? -1 : 1;
-                }
-            });
-            break;
-        case "prefect":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.prefect > b.prefect ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.prefect > b.prefect ? -1 : 1;
-                }
-            });
-            break;
-        case "gender":
-            allStudentVariables.sortedStudents = allStudentVariables.filteredStudents.sort((a, b) => {
-                if (sortDirection === "asc") {
-                    // Ascending
-                    return a.prefect > b.prefect ? 1 : -1;
-                } else {
-                    // Implicit descending
-                    return a.prefect > b.prefect ? -1 : 1;
-                }
-            });
-            break;
+    buildList();
+}
 
-        default:
-            console.error("Unsupported Sorter", sort);
-    }
-    return allStudentVariables.sortedStudents;
+function sortStudents(listOfStudents) {
+
+    const sort = currentSort;
+    const sortDirection = currentSortDirection;
+
+    listOfStudents.sort((a, b) => {
+        if (sortDirection === "asc") {
+            // Ascending
+            return a[sort] > b[sort] ? 1 : -1;
+        } else {
+            // Implicit descending
+            return a[sort] > b[sort] ? -1 : 1;
+        }
+    });
+    return listOfStudents;
 }
 
 // Filter students
@@ -261,73 +180,42 @@ function sortStudents(sort, sortDirection, ) {
 function clickFilterButton(filterButton) {
     console.log("filterClicked");
 
-    let filter
-    filter = filterButton.target.dataset.filter;
+    const filter = filterButton.target.dataset.filter;
+    selectFilter(filter);
+}
 
-    const filteredStudents = filterStudents(filter);
-    console.log(filteredStudents);
-    displayList(filteredStudents);
+function selectFilter(filter) {
+    currentFilter = filter;
+    buildList();
+}
+
+function buildList() {
+
+    const filteredStudents = filterStudents(currentFilter);
+
+    const sortedStudents = sortStudents(filteredStudents);
+
+
+    console.log("My Sorted Students ", sortedStudents);
+
+    displayList(sortedStudents);
 }
 
 function filterStudents(filter) {
-
-    let filtered = allStudentVariables.filteredStudents
     let allStudents = allStudentVariables.allStudents
 
-    filtered = []
-
-    //     if (filter === student.house) {
-    //         filtered = allStudents.filter(house)
-    //     }
-    //     return filtered
-    // }
+    let filtered = []
     if (filter === "prefect") {
         filtered = allStudents.filter(isPrefect)
     } else if (filter === "inquis") {
         filtered = allStudents.filter(isInquis)
-    } else if (filter === "slytherin") {
-        filtered = allStudents.filter(isSlytherin)
-    } else if (filter === "ravenclaw") {
-        filtered = allStudents.filter(isRavenclaw)
-    } else if (filter === "hufflepuff") {
-        filtered = allStudents.filter(isHufflepuff)
-    } else if (filter === "gryffindor") {
-        filtered = allStudents.filter(isGryffindor)
     } else {
-        filtered = allStudents.filter(isAll)
+        filtered = allStudents.filter(student => filter === "*" || filter === student.house.toLowerCase())
     }
 
     return filtered
 }
 
-// DO SOMETHING WITH = forEach(house) --- if (student.house === filter) return true
-
-// Students afilliation functions
-// function checkStudentAfilliation(student) {
-//     if (student.house === "Slytherin") return true
-//     if (student.house === "Hufflepuff") return true
-//     if (student.house === "Gryffindor") return true
-//     if (student.house === "Ravenclaw") return true
-//     if (student.prefect) return true
-//     if (student.inquis) return true
-//     else if (student) return true
-// }
-
-function isSlytherin(student) {
-    if (student.house === "Slytherin") return true
-}
-
-function isHufflepuff(student) {
-    if (student.house === "Hufflepuff") return true
-}
-
-function isGryffindor(student) {
-    if (student.house === "Gryffindor") return true
-}
-
-function isRavenclaw(student) {
-    if (student.house === "Ravenclaw") return true
-}
 
 function isPrefect(student) {
     if (student.prefect) return true
