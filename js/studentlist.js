@@ -13,11 +13,13 @@ const Student = {
     isExpelled: false,
 }
 
-let allStudentVariables = {
+export let allStudentVariables = {
     allStudents: [],
     prefects: [],
-    inquisitorialSquad: []
+    inquisitorialSquad: [],
+    // student: []
 }
+
 
 let currentFilter = "*";
 let currentSort = "firstname";
@@ -28,6 +30,8 @@ export let allConstants = {
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
     studentTemplates: document.querySelectorAll(`[data-field=firstname]`),
 }
+
+
 
 // async function loadJSON()
 export async function loadJSON() {
@@ -67,7 +71,9 @@ function displayStudent(student) {
     clone.querySelector(".student-photo").src = student.image
         // append clone to list
     document.querySelector("#list tbody").appendChild(clone)
+
 }
+
 
 function capitalize(name) {
     return name.charAt(0).toUpperCase() + name.substring(1).toLowerCase()
@@ -118,6 +124,7 @@ function makeStudents(jsonObject) {
     // Student Image
     const studentImageURL = "studentphotos/";
     student.image = studentImageURL + student.lastname.toLowerCase() + "_" + student.firstname.charAt(0).toLowerCase() + ".png"
+
 
     return student
 }
