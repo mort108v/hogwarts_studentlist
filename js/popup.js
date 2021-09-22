@@ -19,7 +19,7 @@ function displayPopUp(student) {
 
     // create clone
     const popClone = document.querySelector("template#studentmodal").content.cloneNode(true)
-    popClone.querySelector("[data-field=image]").src = student.image
+    popClone.querySelector(".student-photo").src = student.image
     popClone.querySelector("[data-field=firstname]").textContent = student.firstname
     popClone.querySelector("[data-field=house]").textContent = student.house
     popClone.querySelector("[data-field=gender]").textContent = student.gender

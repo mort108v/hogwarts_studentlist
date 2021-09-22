@@ -41,14 +41,14 @@ function clickSortButton(sortButton) {
 
     sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc";
 
-    selectSort(sort, sortDirection);
+    list.selectSort(sort, sortDirection);
 }
 
 function clickFilterButton(filterButton) {
     console.log("filterClicked");
 
     const filter = filterButton.target.dataset.filter;
-    selectFilter(filter);
+    list.selectFilter(filter);
 }
 
 //Display List of students
