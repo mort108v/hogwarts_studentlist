@@ -15,7 +15,8 @@ const Student = {
     isExpelled: false,
 }
 
-export let allStudentVariables = {
+let allStudentVariables = {
+    expelledStudents: [],
     allStudents: [],
     prefects: [],
     inquisitorialSquad: []
@@ -157,6 +158,27 @@ function isPrefect(student) {
 
 function isInquis(student) {
     if (student.inquis) return true
+}
+
+export function popStudentFromArray(pop, student) {
+    console.log("pop Student", student)
+
+    let popped = allStudentVariables.expelledStudents
+
+    let studentList = allStudentVariables.allStudents
+
+    if (pop === "pop-prefect") {
+        studentList.pop(student)
+    } else if (pop === "pop-inquis") {
+        student.inquis.toggle
+    } else {
+
+        studentList.pop(student)
+        popped.push(student)
+    }
+
+
+    displayList(studentList);
 }
 
 // About info

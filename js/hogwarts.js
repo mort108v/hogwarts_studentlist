@@ -7,8 +7,10 @@ import * as popup from './popup.js'
 
 let allConstants = {
     filterButtons: document.querySelectorAll(`[data-action="filter"]`),
+    popButtons: document.querySelectorAll(`[data-action="pop"]`),
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
     studentTemplates: document.querySelectorAll(`[data-field=firstname]`),
+
 }
 
 addEventListener("DOMContentLoaded", init())
@@ -23,13 +25,17 @@ function init() {
 function listenForBTNclick() {
     console.log("button listen");
 
-    // Add event-listeners to filter and sort buttons
+    // Add event-listeners to filter, pop and sort buttons
     allConstants.sortButtons.forEach((sortButton) => {
         sortButton.addEventListener("click", clickSortButton);
     });
 
     allConstants.filterButtons.forEach((filterButton) => {
         filterButton.addEventListener("click", clickFilterButton);
+    });
+
+    allConstants.popButtons.forEach((popButton) => {
+        popButton.addEventListener("click", clickPopButton);
     });
 }
 
@@ -49,6 +55,13 @@ function clickFilterButton(filterButton) {
 
     const filter = filterButton.target.dataset.filter;
     list.selectFilter(filter);
+}
+
+function clickPopButton(popButton) {
+    console.log("pop out of array clicked");
+
+    popButton.target.dataset.pop
+    list.popStudentFromArray(student)
 }
 
 //Display List of students
