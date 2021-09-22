@@ -5,7 +5,7 @@ import * as list from './studentlist.js'
 // import popUp
 import * as popup from './popup.js'
 
-let allConstants = {
+const allConstants = {
     filterButtons: document.querySelectorAll(`[data-action="filter"]`),
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
     studentTemplates: document.querySelectorAll(`[data-field=firstname]`),
@@ -14,10 +14,9 @@ let allConstants = {
 addEventListener("DOMContentLoaded", init())
 
 function init() {
-
     list.loadJSON()
     listenForBTNclick()
-
+    listenForPopUpClicks()
 }
 
 function listenForBTNclick() {
@@ -41,14 +40,14 @@ function clickSortButton(sortButton) {
 
     sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc";
 
-    selectSort(sort, sortDirection);
+    list.selectSort(sort, sortDirection);
 }
 
 function clickFilterButton(filterButton) {
     console.log("filterClicked");
 
     const filter = filterButton.target.dataset.filter;
-    selectFilter(filter);
+    list.selectFilter(filter);
 }
 
 //Display List of students
@@ -74,20 +73,28 @@ function displayStudent(student) {
     clone.querySelector("[data-field=house]").textContent = student.house
     clone.querySelector(".student-photo").src = student.image
 
-    // add the popup click here!
-    clone.querySelector("[data-field=firstname]").addEventListener("click", () => popup.preparePopup(student))
+// add the popup click here!
+clone.querySelector("[data-field=firstname]").addEventListener("click", () => popup.preparePopup(student) )
 
-    // append clone to list
+
+        // append clone to list
     document.querySelector("#list tbody").appendChild(clone)
+
 }
 
-// function popUpClicks() {
+// No need for this one
+function listenForPopUpClicks() {
+/*
+    let student = studentlist.allStudentVariables.student
+    let studentTemps = studentlist.allConstants.studentTemplates
 
-//     let student = studentlist.allStudentVariables.student
-//     let studentTemps = studentlist.allConstants.studentTemplates
+    studentTemps.forEach((studentTemp) => {
+        studentTemp.addEventListener("click", popupVariables.preparePopup(student))
+        console.log("Student clicked for popup")
+    })
+    */
+    
+    
+    
 
-//     studentTemps.forEach((studentTemp) => {
-//         studentTemp.addEventListener("click", popupVariables.preparePopup(student))
-//         console.log("Student clicked for popup")
-//     })
-// }
+}

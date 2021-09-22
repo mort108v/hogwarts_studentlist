@@ -18,8 +18,10 @@ const Student = {
 export let allStudentVariables = {
     allStudents: [],
     prefects: [],
-    inquisitorialSquad: []
+    inquisitorialSquad: [],
+    // student: []
 }
+
 
 let currentFilter = "*";
 let currentSort = "firstname";
@@ -35,16 +37,17 @@ export async function loadJSON() {
 // function prepareObjects(jsonData)
 function prepareObjects(jsonData) {
     console.log("JSON Loaded")
-    allStudentVariables.allStudents = jsonData.map(makeStudents)
+    allStudentVariables.allStudents = jsonData.map(makeStudent)
     displayList(allStudentVariables.allStudents)
 }
+
 
 function capitalize(name) {
     return name.charAt(0).toUpperCase() + name.substring(1).toLowerCase()
 }
-
+// function makeStudents(jsonObject)
 // 	firstName | middleName | lastName | nickname | gender | house | isPureblood | isHalfblood | isPlainMuggle | isPrefect | isInquis
-function makeStudents(jsonObject) {
+function makeStudent(jsonObject) {
     console.log("Student in the making")
 
     const student = Object.create(Student)
@@ -89,52 +92,55 @@ function makeStudents(jsonObject) {
     const studentImageURL = "studentphotos/";
     student.image = studentImageURL + student.lastname.toLowerCase() + "_" + student.firstname.charAt(0).toLowerCase() + ".png"
 
+
     return student
 }
 
-// Sort students
-// 	firstName | lastName | house | prefects | inquisitorialSquad
+// buildList filters and sorts the list of students according to global settings
+function buildList() {
+    const filteredStudents = filterStudents(currentFilter);
+    const sortedStudents = sortStudents(filteredStudents);
 
-export function selectSort(sort, direction) {
-    currentSort = sort
-    currentSortDirection = direction
+    console.log("My Sorted Students ", sortedStudents);
 
-    buildList()
+    displayList(sortedStudents);
 }
 
-function sortStudents(listOfStudents) {
+// Sort students
+export function selectSort(sort, direction) {
+    currentSort = sort;
+    currentSortDirection = direction;
 
-    const sort = currentSort
-    const sortDirection = currentSortDirection
+    buildList();
+}
+
+// function sortStudents( list of students to sort)
+// 	firstName | lastName | house | prefects | inquisitorialSquad
+function sortStudents(listOfStudents) {
+    const sort = currentSort;
+    const sortDirection = currentSortDirection;
 
     listOfStudents.sort((a, b) => {
         if (sortDirection === "asc") {
             // Ascending
-            return a[sort] > b[sort] ? 1 : -1
+            return a[sort] > b[sort] ? 1 : -1;
         } else {
             // Implicit descending
-            return a[sort] > b[sort] ? -1 : 1
+            return a[sort] > b[sort] ? -1 : 1;
         }
     });
     return listOfStudents;
 }
 
 // Filter students
-// 	house | responsibilities | expelled | nonExpelled
-
 export function selectFilter(filter) {
-    currentFilter = filter
-    buildList()
+    currentFilter = filter;
+    buildList();
 }
 
-function buildList() {
 
-    const filteredStudents = filterStudents(currentFilter)
-    const sortedStudents = sortStudents(filteredStudents)
-
-    displayList(sortedStudents)
-}
-
+// function filterStudents()
+// 	house | responsibilities | expelled | nonExpelled
 function filterStudents(filter) {
     let allStudents = allStudentVariables.allStudents
 
@@ -159,6 +165,9 @@ function isInquis(student) {
     if (student.inquis) return true
 }
 
+function isAll(student) {
+    if (student) return true
+}
 // About info
 // function studentNumberInfo()
 // 	numberOfStudentsInHouse | totalNumberOfStudents | numberOfStudentsExpelled | numberOfStudentsDisplayed
