@@ -1,18 +1,45 @@
 "use strict"
 
+import { expellStudent, buildList } from "./studentlist.js";
+
 const popupBox = document.querySelector("#studentpop")
 const popupClosebutton = document.querySelector(".closebuttonpop")
+
+let currentStudent
 
 popupClosebutton.addEventListener("click", closePopUp)
 
 function closePopUp() {
     document.querySelector("#studentpop").classList.remove("show")
+    buildList()
 }
 
 export function preparePopup(student) {
     document.querySelector("#poppoppop tbody").innerHTML = ""
     popupBox.classList.add("show")
+
+    currentStudent = student
+
     displayPopUp(student)
+
+}
+
+export function popStudentFromArray(popaction) {
+    let student = currentStudent
+    console.log("pop Student", student)
+
+    if (popaction === "pop-prefect") {
+        student.isPrefect = false
+    } else if (popaction === "pop-inquis") {
+        student.isInquis = false
+    } else if (popaction === "pop-expell") {
+
+        expellStudent(student)
+
+    }
+
+
+
 }
 
 function displayPopUp(student) {

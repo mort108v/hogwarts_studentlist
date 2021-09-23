@@ -128,7 +128,7 @@ export function selectFilter(filter) {
     buildList()
 }
 
-function buildList() {
+export function buildList() {
 
     const filteredStudents = filterStudents(currentFilter)
     const sortedStudents = sortStudents(filteredStudents)
@@ -160,26 +160,16 @@ function isInquis(student) {
     if (student.inquis) return true
 }
 
-export function popStudentFromArray(pop, student) {
-    console.log("pop Student", student)
+export function expellStudent(student) {
+    let allStudents = allStudentVariables.allStudents
 
-    let popped = allStudentVariables.expelledStudents
+    let studentToExpell = allStudents.indexOf(student)
 
-    let studentList = allStudentVariables.allStudents
-
-    if (pop === "pop-prefect") {
-        studentList.pop(student)
-    } else if (pop === "pop-inquis") {
-        student.inquis.toggle
-    } else {
-
-        studentList.pop(student)
-        popped.push(student)
-    }
-
-
-    displayList(studentList);
+    allStudents.splice(studentToExpell, 1)
+    allStudentVariables.expelledStudents.push(student)
 }
+
+
 
 // About info
 // function studentNumberInfo()

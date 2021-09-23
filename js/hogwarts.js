@@ -60,8 +60,7 @@ function clickFilterButton(filterButton) {
 function clickPopButton(popButton) {
     console.log("pop out of array clicked");
 
-    popButton.target.dataset.pop
-    list.popStudentFromArray(student)
+    popup.popStudentFromArray(popButton.target.dataset.popaction)
 }
 
 //Display List of students
