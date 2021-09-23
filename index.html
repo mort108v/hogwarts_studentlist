@@ -70,8 +70,8 @@
         <td data-field="house">HOUSE</td>
         <td data-field="bloodstatus">BLOODSTATUS</td> 
         <td data-field="image" data-image="false"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
-        <td data-field="prefect" data-prefect="false">⭐</td> 
-        <td data-field="inquis" data-inquis="false">🏆</td>
+        <td data-field="prefect" data-action="toggle" data-prefect="false">⭐</td> 
+        <td data-field="inquis" data-action="toggle" data-inquis="false">🏆</td>
     </tr>
     </template>
     <!-- Dialogs for handling too many prefects -->
@@ -102,18 +102,22 @@
                         <th>FIRSTNAME</th>
                         <th>HOUSE</th>
                         <th>GENDER</th>
-                        <th>IS PREF⭐</th>
+                        <th>IS PREFECT⭐</th>
                         <th>IS NAZI🏆</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- template will be copied and inserted here -->
                 </tbody>
+                <br><br>
                 <tfooter>
                     <tr>
                         <th><button data-popaction="pop-expell" data-action="pop">Expell student </button></th>
                         <th><button data-popaction="pop-prefect" data-action="pop">Remove prefect</button></th>
                         <th><button data-popaction="pop-inquis" data-action="pop">Remove inquisitorial squad</button></th>
+                        <th></th>
+                        <th><button data-makeaction="make-prefect" data-action="make">Make prefect</button></th>
+                        <th><button data-makeaction="make-inquis" data-action="make">Make inquisitorial squad</button></th>
                     </tr>
                 </tfooter>
             </table>

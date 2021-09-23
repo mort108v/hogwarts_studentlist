@@ -37,7 +37,7 @@ export async function loadJSON() {
 function prepareObjects(jsonData) {
     console.log("JSON Loaded")
     allStudentVariables.allStudents = jsonData.map(makeStudents)
-    displayList(allStudentVariables.allStudents)
+    buildList()
 }
 
 function capitalize(name) {
@@ -128,6 +128,35 @@ export function selectFilter(filter) {
     buildList()
 }
 
+export function selectToggle(toggleButton, student) {
+    if (toggleButton === "prefect") {
+        console.log("prefect clicked for", student)
+        togglePrefect(student)
+    }
+    if (toggleButton === "inquis") {
+        console.log("inquis clicked for", student)
+        toggleInquis(student)
+    }
+
+    buildList()
+}
+
+function togglePrefect(student) {
+    if (student.isPrefect) {
+        removeStudentAsPrefect(student)
+    } else {
+        makeStudentPrefect(student)
+    }
+}
+
+function toggleInquis(student) {
+    if (student.isInquis) {
+        removeStudentAsInquis(student)
+    } else {
+        makeStudentInquis(student)
+    }
+}
+
 export function buildList() {
 
     const filteredStudents = filterStudents(currentFilter)
@@ -167,6 +196,42 @@ export function expellStudent(student) {
 
     allStudents.splice(studentToExpell, 1)
     allStudentVariables.expelledStudents.push(student)
+}
+
+export function removeStudentAsPrefect(student) {
+
+    student.isPrefect = false
+    let allPrefects = allStudentVariables.prefects
+
+    let studentInPrefectlist = allPrefects.indexOf(student)
+
+    allPrefects.splice(studentInPrefectlist, 1)
+}
+
+export function removeStudentAsInquis(student) {
+
+    student.isInquis = false
+    let allInquis = allStudentVariables.inquisitorialSquad
+
+    let studentInInquislist = allInquis.indexOf(student)
+
+    allInquis.splice(studentInInquislist, 1)
+}
+
+export function makeStudentPrefect(student) {
+
+    student.isPrefect = true
+    let allPrefects = allStudentVariables.prefects
+
+    allPrefects.push(student)
+}
+
+export function makeStudentInquis(student) {
+
+    student.isInquis = true
+    let allInquis = allStudentVariables.inquisitorialSquad
+
+    allInquis.push(student)
 }
 
 
