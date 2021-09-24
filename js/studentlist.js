@@ -235,9 +235,9 @@ function isMuggle(student) {
     if (student.bloodstatus === "Half") return true
 }
 
-function isExpelled(student) {
-    if (student.isExpelled) return true
-}
+// function isExpelled(student) {
+//     if (student.isExpelled) return true
+// }
 
 export function expellStudent(student) {
 
@@ -281,10 +281,10 @@ export function makeStudentPrefect(student) {
 
         showDialogPrefects()
         inputPrefects()
+
     } else {
         student.isPrefect = true
         let allPrefects = allStudentVariables.prefects
-
         allPrefects.push(student)
     }
 }

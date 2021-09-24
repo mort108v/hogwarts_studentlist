@@ -336,3 +336,11 @@ button.filter {
     filter: grayscale(100%);
     cursor: pointer;
 }
+
+.dialog {
+    z-index: 1;
+}
+
+.popupbox {
+    z-index: 0;
+}

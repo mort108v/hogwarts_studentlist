@@ -144,7 +144,6 @@ function hideDialogInquis() {
 
 function dialogBoxActions() {
 
-
     const closeButtonPrefect = document.querySelector(".closebutton-pre")
     closeButtonPrefect.addEventListener("click", hideDialogPrefects)
 

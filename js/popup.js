@@ -1,6 +1,6 @@
 "use strict"
 
-import { expellStudent, buildList, removeStudentAsInquis, removeStudentAsPrefect, makeStudentPrefect } from "./studentlist.js";
+import { expellStudent, buildList, removeStudentAsInquis, removeStudentAsPrefect, makeStudentPrefect, makeStudentInquis } from "./studentlist.js";
 
 const popupBox = document.querySelector("#studentpop")
 const popupClosebutton = document.querySelector(".closebuttonpop")
@@ -45,7 +45,7 @@ export function makeStudentSomething(makeaction) {
         makeStudentPrefect(student)
 
     } else if (makeaction === "make-inquis") {
-        student.isInquis = true
+        makeStudentInquis(student)
     }
     preparePopup(student)
 }
@@ -59,6 +59,7 @@ function displayPopUp(student) {
     popClone.querySelector("[data-field=house]").textContent = student.house
     popClone.querySelector("[data-field=gender]").textContent = student.gender
     popClone.querySelector("[data-field=prefect]").dataset.prefect = student.isPrefect
+    popClone.querySelector("[data-field=inquis]").dataset.inquis = student.isInquis
     popClone.querySelector("[data-field=bloodstatus]").textContent = student.bloodstatus
 
     // append clone to list

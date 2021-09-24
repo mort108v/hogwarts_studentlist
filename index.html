@@ -75,31 +75,7 @@
         <td data-field="inquis" data-action="toggle" data-inquis="false">🏆</td>
     </tr>
     </template>
-    <!-- Dialogs for handling too many prefects -->
-    <div id="onlytwoprefects" class="dialog">
-        <div class="dialogcontent">
-            <button class="closebutton-pre">close</button>
-            <h1>You can only have two Prefects!</h1>
-            <h2>Remove one, before you appoint more</h2>
-            <p><button data-action="removepre1">REMOVE</button> <span class="student1" data-field="studentprefect1">NAME, the Student</span></p>
-            <p><button data-action="removepre2">REMOVE</button> <span class="student2" data-field="studentprefect2">NAME, the Student</span></p>
-        </div>
-    </div>
-    <div id="onlyonekind" class="dialog">
-        <div class="dialogcontent">
-            <button class="closebutton-gen">close</button>
-            <h1>You can only have one Prefect of each gender</h1>
-            <h2>Remove the other if you want to appoint a new one</h2>
-            <p><button data-action="removegen1">REMOVE</button> <span class="studentgen1" data-field="studentgender">NAME, the Student</span></p>
-        </div>
-    </div>
-    <div id="cannotbeinquis" class="dialog">
-        <div class="dialogcontent">
-            <button class="closebutton-inq">close</button>
-            <h1>DANGER!!</h1>
-            <h2>You cannot make <span class="student" data-field="thisstudent">NAME, the Student</span> Inquisitorial squad</h2>
-        </div>
-    </div>
+
     <section id="studentpop" class="popupbox">
         <div class="popupcontent">
             <table id="poppoppop">
@@ -144,6 +120,31 @@
             <td data-field="inquis" data-inquis="false">🏆</td>
         </tr>
     </template>
+    <!-- Dialogs for handling too many prefects -->
+    <div id="onlytwoprefects" class="dialog">
+        <div class="dialogcontent">
+            <button class="closebutton-pre">close</button>
+            <h1>You can only have two Prefects!</h1>
+            <h2>Remove one, before you appoint more</h2>
+            <p><button data-action="removepre1">REMOVE</button> <span class="student1" data-field="studentprefect1">NAME, the Student</span></p>
+            <p><button data-action="removepre2">REMOVE</button> <span class="student2" data-field="studentprefect2">NAME, the Student</span></p>
+        </div>
+    </div>
+    <div id="onlyonekind" class="dialog">
+        <div class="dialogcontent">
+            <button class="closebutton-gen">close</button>
+            <h1>You can only have one Prefect of each gender</h1>
+            <h2>Remove the other if you want to appoint a new one</h2>
+            <p><button data-action="removegen1">REMOVE</button> <span class="studentgen1" data-field="studentgender">NAME, the Student</span></p>
+        </div>
+    </div>
+    <div id="cannotbeinquis" class="dialog">
+        <div class="dialogcontent">
+            <button class="closebutton-inq">close</button>
+            <h1>DANGER!!</h1>
+            <h2>You cannot make <span class="student" data-field="thisstudent">NAME, the Student</span> Inquisitorial squad</h2>
+        </div>
+    </div>
 </body>
 
 </html>
