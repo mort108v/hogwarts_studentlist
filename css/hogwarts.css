@@ -208,7 +208,7 @@ button.filter {
 }
 
 .dialogcontent {
-    background-color: rgb(233, 233, 255);
+    background-color: rgb(185, 33, 173);
     font-family: Arial, Helvetica, sans-serif;
     padding: 10vw 8vw 8vw 8vw;
     position: relative;
@@ -308,20 +308,31 @@ button.filter {
     color: black;
 }
 
+#studentpop tbody [data-field="prefect"][data-prefect="false"] {
+    filter: grayscale(100%);
+    content: "⭐";
+    text-align: center;
+}
+
+#studentpop tbody [data-field="prefect"][data-prefect="true"] {
+    filter: grayscale(0%);
+    content: "⭐";
+    text-align: center;
+}
+
+#studentpop tbody [data-field="inquis"][data-inquis="false"] {
+    filter: grayscale(100%);
+    content: "🏆";
+    text-align: center;
+}
+
+#studentpop tbody [data-field="inquis"][data-inquis="true"] {
+    filter: grayscale(0%);
+    content: "🏆";
+    text-align: center;
+}
+
 [data-field="firstname"]:hover {
     filter: grayscale(100%);
     cursor: pointer;
 }
-
-
-/* [data-field="image"]:hover {
-    filter: grayscale(100%);
-    display: block;
-    position: absolute;
-} */
-
-
-/* [data-field="firstname"]:hover {
-    filter: grayscale(0%);
-    cursor: pointer;
-} */

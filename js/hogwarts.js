@@ -9,7 +9,8 @@ let allConstants = {
     filterButtons: document.querySelectorAll(`[data-action="filter"]`),
     popButtons: document.querySelectorAll(`[data-action="pop"]`),
     makeButtons: document.querySelectorAll(`[data-action="make"]`),
-    sortButtons: document.querySelectorAll(`[data-action="sort"]`)
+    sortButtons: document.querySelectorAll(`[data-action="sort"]`),
+    dialogBox: document.querySelector(`#onlytwoprefects`)
 }
 
 addEventListener("DOMContentLoaded", init())
@@ -22,62 +23,62 @@ function init() {
 }
 
 function listenForBTNclick() {
-    console.log("button listen");
+    console.log("button listen")
 
     // Add event-listeners to filter, pop and sort buttons
     allConstants.sortButtons.forEach((sortButton) => {
-        sortButton.addEventListener("click", clickSortButton);
+        sortButton.addEventListener("click", clickSortButton)
     });
 
     allConstants.filterButtons.forEach((filterButton) => {
-        filterButton.addEventListener("click", clickFilterButton);
+        filterButton.addEventListener("click", clickFilterButton)
     });
 
     allConstants.popButtons.forEach((popButton) => {
-        popButton.addEventListener("click", clickPopButton);
+        popButton.addEventListener("click", clickPopButton)
     });
 
     allConstants.makeButtons.forEach((makeButton) => {
-        makeButton.addEventListener("click", clickMakeButton);
+        makeButton.addEventListener("click", clickMakeButton)
     });
 
 }
 
 function clickSortButton(sortButton) {
-    console.log("Sorting Clicked");
+    console.log("Sorting Clicked")
 
-    const sort = sortButton.target.dataset.sort;
-    const sortDirection = sortButton.target.dataset.sortDirection;
+    const sort = sortButton.target.dataset.sort
+    const sortDirection = sortButton.target.dataset.sortDirection
 
-    sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc";
+    sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc"
 
-    list.selectSort(sort, sortDirection);
+    list.selectSort(sort, sortDirection)
 }
 
 function clickFilterButton(filterButton) {
-    console.log("filter Clicked");
+    console.log("filter Clicked")
 
-    const filter = filterButton.target.dataset.filter;
-    list.selectFilter(filter);
+    const filter = filterButton.target.dataset.filter
+    list.selectFilter(filter)
 }
 
 function clickPopButton(popButton) {
-    console.log("pop out of array clicked");
+    console.log("pop out of array clicked")
 
     popup.popStudentFromArray(popButton.target.dataset.popaction)
 }
 
 function clickMakeButton(makeButton) {
-    console.log("Make student button clicked");
+    console.log("Make student button clicked")
 
     popup.makeStudentSomething(makeButton.target.dataset.makeaction)
 }
 
 function clickToggleButton(toggleButton, student) {
-    console.log("toggle Clicked");
+    console.log("toggle Clicked")
 
-    const toggleThis = toggleButton.target.dataset.field;
-    list.selectToggle(toggleThis, student);
+    const toggleThis = toggleButton.target.dataset.field
+    list.selectToggle(toggleThis, student)
 }
 
 
@@ -104,9 +105,9 @@ function displayStudent(student) {
     clone.querySelector("[data-field=house]").textContent = student.house
     clone.querySelector(".student-photo").src = student.image
 
-    clone.querySelector("[data-field=prefect]").dataset.prefect = student.isPrefect;
-    clone.querySelector("[data-field=inquis]").dataset.inquis = student.isInquis;
-    // Is or isn't Prefect or Inquis
+    clone.querySelector("[data-field=prefect]").dataset.prefect = student.isPrefect
+    clone.querySelector("[data-field=inquis]").dataset.inquis = student.isInquis
+        // Is or isn't Prefect or Inquis
     clone.querySelector("[data-field=prefect]").addEventListener("click", (toggleButton) => clickToggleButton(toggleButton, student))
     clone.querySelector("[data-field=inquis]").addEventListener("click", (toggleButton) => clickToggleButton(toggleButton, student))
 
@@ -115,4 +116,47 @@ function displayStudent(student) {
 
     // append clone to list
     document.querySelector("#list tbody").appendChild(clone)
+}
+
+export function inputPrefects() {
+
+    const prefects = list.allStudentVariables.prefects
+    document.querySelector("[data-field=studentprefect1]").textContent = prefects[0].firstname + " " + prefects[0].lastname
+    document.querySelector("[data-field=studentprefect2]").textContent = prefects[1].firstname + " " + prefects[1].lastname
+
+    dialogBoxActions()
+
+}
+
+function dialogBoxActions() {
+
+    const removePrefect1 = document.querySelector("[data-action=removepre1]")
+
+    const removePrefect2 = document.querySelector("[data-action=removepre2]")
+
+    let prefect1 = list.allStudentVariables.prefects[0]
+    let prefect2 = list.allStudentVariables.prefects[1]
+
+    removePrefect1.addEventListener("click", () => {
+
+        list.removeStudentAsPrefect(prefect1)
+        hideDialogPrefects()
+        list.buildList()
+    })
+
+    removePrefect2.addEventListener("click", () => {
+
+        list.removeStudentAsPrefect(prefect2)
+        hideDialogPrefects()
+        list.buildList()
+    })
+}
+
+export function showDialogPrefects() {
+    allConstants.dialogBox.classList.add("show")
+}
+
+export function hideDialogPrefects() {
+    allConstants.dialogBox.classList.remove("show")
+
 }

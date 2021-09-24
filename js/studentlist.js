@@ -1,6 +1,6 @@
 "use strict"
 
-import { displayList } from "./hogwarts.js";
+import { displayList, hideDialogPrefects, showDialogPrefects, inputPrefects } from "./hogwarts.js";
 
 const Student = {
     firstname: " ",
@@ -15,7 +15,7 @@ const Student = {
     isExpelled: false,
 }
 
-let allStudentVariables = {
+export let allStudentVariables = {
     expelledStudents: [],
     allStudents: [],
     prefects: [],
@@ -25,6 +25,7 @@ let allStudentVariables = {
 let currentFilter = "*";
 let currentSort = "firstname";
 let currentSortDirection = "asc";
+
 
 // async function loadJSON()
 export async function loadJSON() {
@@ -142,11 +143,23 @@ export function selectToggle(toggleButton, student) {
 }
 
 function togglePrefect(student) {
+
+    let prefectCount = allStudentVariables.prefects.length
+
     if (student.isPrefect) {
         removeStudentAsPrefect(student)
-    } else {
+    } else if (prefectCount < 2) {
         makeStudentPrefect(student)
+    } else if (prefectCount >= 2) {
+        console.log("There are already 2 prefects")
+
+        const closeButtonPrefect = document.querySelector(".closebutton-pre")
+        closeButtonPrefect.addEventListener("click", hideDialogPrefects)
+
+        showDialogPrefects()
+        inputPrefects()
     }
+
 }
 
 function toggleInquis(student) {
@@ -206,6 +219,7 @@ export function removeStudentAsPrefect(student) {
     let studentInPrefectlist = allPrefects.indexOf(student)
 
     allPrefects.splice(studentInPrefectlist, 1)
+
 }
 
 export function removeStudentAsInquis(student) {
@@ -220,10 +234,22 @@ export function removeStudentAsInquis(student) {
 
 export function makeStudentPrefect(student) {
 
-    student.isPrefect = true
-    let allPrefects = allStudentVariables.prefects
+    let prefectCount = allStudentVariables.prefects.length
 
-    allPrefects.push(student)
+    if (prefectCount >= 2) {
+        console.log("There are already 2 prefects")
+
+        const closeButtonPrefect = document.querySelector(".closebutton-pre")
+        closeButtonPrefect.addEventListener("click", hideDialogPrefects)
+
+        showDialogPrefects()
+        inputPrefects()
+    } else {
+        student.isPrefect = true
+        let allPrefects = allStudentVariables.prefects
+
+        allPrefects.push(student)
+    }
 }
 
 export function makeStudentInquis(student) {
@@ -234,7 +260,12 @@ export function makeStudentInquis(student) {
     allInquis.push(student)
 }
 
+// export function countPrefects() {
 
+//     const numberOfPrefects = allStudentVariables.prefects.length;
+//     console.log("getNumberOfPrefects", numberOfPrefects);
+//     return numberOfPrefects;
+// }
 
 // About info
 // function studentNumberInfo()
