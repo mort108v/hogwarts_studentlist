@@ -1,6 +1,6 @@
 "use strict"
 
-import { displayList, hideDialogPrefects, showDialogPrefects, inputPrefects } from "./hogwarts.js";
+import { displayList, showDialogPrefects, inputPrefects } from "./hogwarts.js";
 
 const Student = {
     firstname: " ",
@@ -19,7 +19,9 @@ export let allStudentVariables = {
     expelledStudents: [],
     allStudents: [],
     prefects: [],
-    inquisitorialSquad: []
+    inquisitorialSquad: [],
+    halfbloods: [],
+    purebloods: []
 }
 
 let currentFilter = "*";
@@ -31,14 +33,24 @@ let currentSortDirection = "asc";
 export async function loadJSON() {
     const response = await fetch("https://petlatkea.dk/2021/hogwarts/students.json")
     const jsonData = await response.json()
+    const response2 = await fetch("https://petlatkea.dk/2021/hogwarts/families.json")
+    const jsonBlood = await response2.json()
+    studentBloodstatus(jsonBlood)
     prepareObjects(jsonData)
 }
 
 // function prepareObjects(jsonData)
 function prepareObjects(jsonData) {
     console.log("JSON Loaded")
+
     allStudentVariables.allStudents = jsonData.map(makeStudents)
+
     buildList()
+}
+
+function studentBloodstatus(jsonBlood) {
+    allStudentVariables.halfbloods = jsonBlood.half
+    allStudentVariables.purebloods = jsonBlood.pure
 }
 
 function capitalize(name) {
@@ -90,6 +102,14 @@ function makeStudents(jsonObject) {
     // Student Image
     const studentImageURL = "studentphotos/";
     student.image = studentImageURL + student.lastname.toLowerCase() + "_" + student.firstname.charAt(0).toLowerCase() + ".png"
+
+    // Student Bloodstatus
+    let halfs = allStudentVariables.halfbloods
+    if (halfs.includes(student.lastname)) {
+        student.bloodstatus = "Half"
+    } else {
+        student.bloodstatus = "Pure"
+    }
 
     return student
 }
@@ -143,6 +163,7 @@ export function selectToggle(toggleButton, student) {
 }
 
 function togglePrefect(student) {
+    console.log(allStudentVariables.prefects)
 
     let prefectCount = allStudentVariables.prefects.length
 
@@ -153,12 +174,10 @@ function togglePrefect(student) {
     } else if (prefectCount >= 2) {
         console.log("There are already 2 prefects")
 
-        const closeButtonPrefect = document.querySelector(".closebutton-pre")
-        closeButtonPrefect.addEventListener("click", hideDialogPrefects)
-
         showDialogPrefects()
         inputPrefects()
     }
+    console.log(allStudentVariables.prefects)
 
 }
 
@@ -195,11 +214,11 @@ function filterStudents(filter) {
 
 
 function isPrefect(student) {
-    if (student.prefect) return true
+    if (student.isPrefect) return true
 }
 
 function isInquis(student) {
-    if (student.inquis) return true
+    if (student.isInquis) return true
 }
 
 export function expellStudent(student) {
@@ -238,9 +257,6 @@ export function makeStudentPrefect(student) {
 
     if (prefectCount >= 2) {
         console.log("There are already 2 prefects")
-
-        const closeButtonPrefect = document.querySelector(".closebutton-pre")
-        closeButtonPrefect.addEventListener("click", hideDialogPrefects)
 
         showDialogPrefects()
         inputPrefects()

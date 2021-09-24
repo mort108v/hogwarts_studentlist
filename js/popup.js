@@ -1,6 +1,6 @@
 "use strict"
 
-import { expellStudent, buildList, removeStudentAsInquis, removeStudentAsPrefect } from "./studentlist.js";
+import { expellStudent, buildList, removeStudentAsInquis, removeStudentAsPrefect, makeStudentPrefect } from "./studentlist.js";
 
 const popupBox = document.querySelector("#studentpop")
 const popupClosebutton = document.querySelector(".closebuttonpop")
@@ -34,6 +34,7 @@ export function popStudentFromArray(popaction) {
     } else if (popaction === "pop-expell") {
         expellStudent(student)
     }
+    preparePopup(student)
 }
 
 export function makeStudentSomething(makeaction) {
@@ -41,10 +42,12 @@ export function makeStudentSomething(makeaction) {
     console.log(makeaction, student)
 
     if (makeaction === "make-prefect") {
-        student.isPrefect = true
+        makeStudentPrefect(student)
+
     } else if (makeaction === "make-inquis") {
         student.isInquis = true
     }
+    preparePopup(student)
 }
 
 function displayPopUp(student) {
@@ -55,8 +58,8 @@ function displayPopUp(student) {
     popClone.querySelector("[data-field=firstname]").textContent = student.firstname
     popClone.querySelector("[data-field=house]").textContent = student.house
     popClone.querySelector("[data-field=gender]").textContent = student.gender
-    popClone.querySelector("[data-field=prefect]").dataset.prefect = student.prefect
-    popClone.querySelector("[data-field=inquis]").dataset.inquis = student.inquis
+    popClone.querySelector("[data-field=prefect]").dataset.prefect = student.isPrefect
+    popClone.querySelector("[data-field=inquis]").dataset.inquis = student.isInquis
 
     // append clone to list
     document.querySelector("#poppoppop tbody").appendChild(popClone)

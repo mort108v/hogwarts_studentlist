@@ -130,6 +130,10 @@ export function inputPrefects() {
 
 function dialogBoxActions() {
 
+
+    const closeButtonPrefect = document.querySelector(".closebutton-pre")
+    closeButtonPrefect.addEventListener("click", hideDialogPrefects)
+
     const removePrefect1 = document.querySelector("[data-action=removepre1]")
 
     const removePrefect2 = document.querySelector("[data-action=removepre2]")
@@ -137,26 +141,28 @@ function dialogBoxActions() {
     let prefect1 = list.allStudentVariables.prefects[0]
     let prefect2 = list.allStudentVariables.prefects[1]
 
-    removePrefect1.addEventListener("click", () => {
+    removePrefect1.addEventListener("click", removeStudent1)
 
+    function removeStudent1() {
         list.removeStudentAsPrefect(prefect1)
         hideDialogPrefects()
         list.buildList()
-    })
+    }
+    removePrefect2.addEventListener("click", removeStudent2)
 
-    removePrefect2.addEventListener("click", () => {
-
+    function removeStudent2() {
         list.removeStudentAsPrefect(prefect2)
         hideDialogPrefects()
         list.buildList()
-    })
+    }
+
+    function hideDialogPrefects() {
+        allConstants.dialogBox.classList.remove("show")
+        removePrefect1.removeEventListener("click", removeStudent1)
+        removePrefect2.removeEventListener("click", removeStudent2)
+    }
 }
 
 export function showDialogPrefects() {
     allConstants.dialogBox.classList.add("show")
-}
-
-export function hideDialogPrefects() {
-    allConstants.dialogBox.classList.remove("show")
-
 }
