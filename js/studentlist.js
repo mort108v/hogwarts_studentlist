@@ -28,6 +28,7 @@ let currentFilter = "*";
 let currentSort = "firstname";
 let currentSortDirection = "asc";
 
+export const searchBar = document.querySelector('#searchBar')
 
 // async function loadJSON()
 export async function loadJSON() {
@@ -35,6 +36,7 @@ export async function loadJSON() {
     const jsonData = await response.json()
     const response2 = await fetch("https://petlatkea.dk/2021/hogwarts/families.json")
     const jsonBlood = await response2.json()
+
     studentBloodstatus(jsonBlood)
     prepareObjects(jsonData)
 }
@@ -46,6 +48,23 @@ function prepareObjects(jsonData) {
     allStudentVariables.allStudents = jsonData.map(makeStudents)
 
     buildList()
+}
+
+export function searchForStudent() {
+    console.log("search init")
+
+    searchBar.addEventListener('keyup', (e) => {
+        const searchString = e.target.value.toLowerCase()
+
+        const filteredSearch = allStudentVariables.allStudents.filter((student) => {
+            return (
+                student.firstname.toLowerCase().includes(searchString) ||
+                student.lastname.toLowerCase().includes(searchString)
+            )
+        })
+
+        displayList(filteredSearch)
+    })
 }
 
 function studentBloodstatus(jsonBlood) {

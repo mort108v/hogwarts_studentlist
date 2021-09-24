@@ -344,3 +344,25 @@ button.filter {
 .popupbox {
     z-index: 0;
 }
+
+#searchBar {
+    width: 30vw;
+    height: 32px;
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+#searchWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#searchWrapper::after {
+    content: '🔍';
+    position: relative;
+    top: 7px;
+    right: 25px;
+}

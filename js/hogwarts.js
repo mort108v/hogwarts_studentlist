@@ -11,7 +11,8 @@ let allConstants = {
     makeButtons: document.querySelectorAll(`[data-action="make"]`),
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
     dialogBox: document.querySelector(`#onlytwoprefects`),
-    dialogBoxInq: document.querySelector(`#cannotbeinquis`)
+    dialogBoxInq: document.querySelector(`#cannotbeinquis`),
+
 }
 
 addEventListener("DOMContentLoaded", init())
@@ -21,7 +22,10 @@ function init() {
     list.loadJSON()
     listenForBTNclick()
 
+    list.searchBar.addEventListener("click", list.searchForStudent)
 }
+
+
 
 function listenForBTNclick() {
     console.log("button listen")
