@@ -10,7 +10,8 @@ let allConstants = {
     popButtons: document.querySelectorAll(`[data-action="pop"]`),
     makeButtons: document.querySelectorAll(`[data-action="make"]`),
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
-    dialogBox: document.querySelector(`#onlytwoprefects`)
+    dialogBox: document.querySelector(`#onlytwoprefects`),
+    dialogBoxInq: document.querySelector(`#cannotbeinquis`)
 }
 
 addEventListener("DOMContentLoaded", init())
@@ -126,6 +127,19 @@ export function inputPrefects() {
 
     dialogBoxActions()
 
+}
+
+export function cannotMakeInquisDialog(student) {
+    allConstants.dialogBoxInq.classList.add("show")
+    const closeButtonInquis = document.querySelector(".closebutton-inq")
+    closeButtonInquis.addEventListener("click", hideDialogInquis)
+
+    document.querySelector("[data-field=thisstudent]").textContent = student.firstname + " " + student.lastname
+
+}
+
+function hideDialogInquis() {
+    allConstants.dialogBoxInq.classList.remove("show")
 }
 
 function dialogBoxActions() {

@@ -1,6 +1,6 @@
 "use strict"
 
-import { displayList, showDialogPrefects, inputPrefects } from "./hogwarts.js";
+import { displayList, showDialogPrefects, inputPrefects, cannotMakeInquisDialog } from "./hogwarts.js";
 
 const Student = {
     firstname: " ",
@@ -270,18 +270,14 @@ export function makeStudentPrefect(student) {
 
 export function makeStudentInquis(student) {
 
-    student.isInquis = true
-    let allInquis = allStudentVariables.inquisitorialSquad
-
-    allInquis.push(student)
+    if (student.house === "Slytherin" || student.bloodstatus === "Pure") {
+        student.isInquis = true
+        let allInquis = allStudentVariables.inquisitorialSquad
+        allInquis.push(student)
+    } else {
+        cannotMakeInquisDialog(student)
+    }
 }
-
-// export function countPrefects() {
-
-//     const numberOfPrefects = allStudentVariables.prefects.length;
-//     console.log("getNumberOfPrefects", numberOfPrefects);
-//     return numberOfPrefects;
-// }
 
 // About info
 // function studentNumberInfo()
