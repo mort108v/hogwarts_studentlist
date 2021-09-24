@@ -205,6 +205,10 @@ function filterStudents(filter) {
         filtered = allStudents.filter(isPrefect)
     } else if (filter === "inquis") {
         filtered = allStudents.filter(isInquis)
+    } else if (filter === "pureblood") {
+        filtered = allStudents.filter(isPure)
+    } else if (filter === "muggle") {
+        filtered = allStudents.filter(isMuggle)
     } else {
         filtered = allStudents.filter(student => filter === "*" || filter === student.house.toLowerCase())
     }
@@ -219,6 +223,14 @@ function isPrefect(student) {
 
 function isInquis(student) {
     if (student.isInquis) return true
+}
+
+function isPure(student) {
+    if (student.bloodstatus === "Pure") return true
+}
+
+function isMuggle(student) {
+    if (student.bloodstatus === "Half") return true
 }
 
 export function expellStudent(student) {
