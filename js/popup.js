@@ -59,7 +59,7 @@ function displayPopUp(student) {
     popClone.querySelector("[data-field=house]").textContent = student.house
     popClone.querySelector("[data-field=gender]").textContent = student.gender
     popClone.querySelector("[data-field=prefect]").dataset.prefect = student.isPrefect
-    popClone.querySelector("[data-field=inquis]").dataset.inquis = student.isInquis
+    popClone.querySelector("[data-field=bloodstatus]").textContent = student.bloodstatus
 
     // append clone to list
     document.querySelector("#poppoppop tbody").appendChild(popClone)

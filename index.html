@@ -29,6 +29,7 @@
         <button class="filter" data-action="filter" data-filter="inquis">INQUISITORIAL SQUAD</button>
         <button class="filter" data-action="filter" data-filter="pureblood">PUREBLOODS</button>
         <button class="filter" data-action="filter" data-filter="muggle">MUGGLES</button>
+        <button class="filter" data-action="filter" data-filter="expelled">EXPELLED</button>
         <div id="houses">
             <div class="dropdown">
                 <button class="dropbtn">HOUSES</button>
@@ -109,6 +110,7 @@
                         <th>FIRSTNAME</th>
                         <th>HOUSE</th>
                         <th>GENDER</th>
+                        <th>BLOODSTATUS</th>
                         <th>IS PREFECT⭐</th>
                         <th>IS NAZI🏆</th>
                     </tr>
@@ -119,12 +121,13 @@
                 <br><br>
                 <tfooter>
                     <tr>
-                        <th><button data-popaction="pop-expell" data-action="pop">Expell student </button></th>
-                        <th><button data-popaction="pop-prefect" data-action="pop">Remove prefect</button></th>
-                        <th><button data-popaction="pop-inquis" data-action="pop">Remove inquisitorial squad</button></th>
-                        <th></th>
                         <th><button data-makeaction="make-prefect" data-action="make">Make prefect</button></th>
+                        <th><button data-popaction="pop-prefect" data-action="pop">Remove prefect</button></th>
+                        <th></th>
+                        <th><button data-popaction="pop-expell" data-action="pop">Expell student </button></th>
+                        <th></th>
                         <th><button data-makeaction="make-inquis" data-action="make">Make inquisitorial squad</button></th>
+                        <th><button data-popaction="pop-inquis" data-action="pop">Remove inquisitorial squad</button></th>
                     </tr>
                 </tfooter>
             </table>
@@ -136,6 +139,7 @@
             <td data-field="firstname">FIRSTNAME</td>
             <td data-field="house">HOUSE</td>
             <td data-field="gender">GENDER</td>
+            <td data-field="bloodstatus">BLOODSTATUS</td>
             <td data-field="prefect"data-prefect="false">⭐</td>
             <td data-field="inquis" data-inquis="false">🏆</td>
         </tr>

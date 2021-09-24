@@ -209,6 +209,8 @@ function filterStudents(filter) {
         filtered = allStudents.filter(isPure)
     } else if (filter === "muggle") {
         filtered = allStudents.filter(isMuggle)
+    } else if (filter === "expelled") {
+        filtered = allStudentVariables.expelledStudents
     } else {
         filtered = allStudents.filter(student => filter === "*" || filter === student.house.toLowerCase())
     }
@@ -233,13 +235,20 @@ function isMuggle(student) {
     if (student.bloodstatus === "Half") return true
 }
 
+function isExpelled(student) {
+    if (student.isExpelled) return true
+}
+
 export function expellStudent(student) {
+
+    student.isExpelled = true
     let allStudents = allStudentVariables.allStudents
 
     let studentToExpell = allStudents.indexOf(student)
 
     allStudents.splice(studentToExpell, 1)
     allStudentVariables.expelledStudents.push(student)
+
 }
 
 export function removeStudentAsPrefect(student) {
