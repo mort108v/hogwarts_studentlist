@@ -28,7 +28,7 @@ let currentFilter = "*";
 let currentSort = "firstname";
 let currentSortDirection = "asc";
 
-export const searchBar = document.querySelector('#searchBar')
+export const searchBar = document.querySelector('#searchbar')
 
 // async function loadJSON()
 export async function loadJSON() {

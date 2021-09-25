@@ -16,35 +16,37 @@
     <!-- header>#splash>#title^nav^#searchwrapper^main>table#list^section#hidden>(#templates^#popups^#dialogs)^^footer -->
     <header>
         <div id="splash">
-            <div id="title">
-                <h1 id="schoolname" class="">HOGWARTS STUDENT LIST</h1>
-            </div>
+        </div>
+        <div id="title">
+            <h1 id="schoolname" class="">HOGWARTS SCHOOL OF WITCHCRAFT AND WIZARDRY</h1>
         </div>
         <nav>
             <div id="filterbuttons">
-                <button class="filter" data-action="filter" data-filter="*">ALL</button>
+                <button class="filter" data-action="filter" data-filter="*">ALL STUDENTS</button>
                 <button class="filter" data-action="filter" data-filter="prefect">PREFECTS</button>
-                <button class="filter" data-action="filter" data-filter="inquis">INQUISITORIAL SQUAD</button>
+                <button class="filter" data-action="filter" data-filter="inquis">INQUISITORIAL</button>
                 <button class="filter" data-action="filter" data-filter="pureblood">PUREBLOODS</button>
                 <button class="filter" data-action="filter" data-filter="muggle">MUGGLES</button>
                 <button class="filter" data-action="filter" data-filter="expelled">EXPELLED</button>
-                <div id="houses">
-                    <div class="dropdown">
-                        <button class="dropbtn">HOUSES</button>
-                        <div class="dropdown-content">
-                            <button id="hufflepuff" class="filter" data-action="filter" data-filter="hufflepuff">HUFFLEPUFF</button>
-                            <button id="ravenclaw" class="filter" data-action="filter" data-filter="ravenclaw">RAVENCLAW</button>
-                            <button id="slytherin" class="filter" data-action="filter" data-filter="slytherin">SLYTHERIN</button>
-                            <button id="gryffindor" class="filter" data-action="filter" data-filter="gryffindor">GRYFFINDOR</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </nav>
+
     </header>
-    <div id="searchwrapper">
-        <input type="text" name="searchbar" id="searchbar" placeholder="search for student first, or lastname" />
+    <div id="houses">
+        <div class="dropdown">
+            <button class="dropbtn">HOUSES</button>
+            <div class="dropdown-content">
+                <button id="hufflepuff" class="filter" data-action="filter" data-filter="hufflepuff">HUFFLEPUFF</button>
+                <button id="ravenclaw" class="filter" data-action="filter" data-filter="ravenclaw">RAVENCLAW</button>
+                <button id="slytherin" class="filter" data-action="filter" data-filter="slytherin">SLYTHERIN</button>
+                <button id="gryffindor" class="filter" data-action="filter" data-filter="gryffindor">GRYFFINDOR</button>
+            </div>
+        </div>
     </div>
+    <section id="searchwrapper">
+        <input type="text" name="searchbar" id="searchbar" placeholder="search for student first, or lastname" />
+    </section>
     <main>
         <table id="list">
             <thead>
@@ -83,7 +85,7 @@
               </template>
         <template id="studentmodal">
                 <tr>
-                    <td data-field="image" data-image="true"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
+                    <td data-field="image" data-image="true"><img type="image" src="" alt="" width="100" height="100" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
                     <td data-field="firstname">FIRSTNAME</td>
                     <td data-field="house">HOUSE</td>
                     <td data-field="gender">GENDER</td>
@@ -100,7 +102,7 @@
                     <thead>
                         <button class="closebuttonpop">close</button>
                         <tr>
-                            <th>IMAGE</th>
+                            <th></th>
                             <th>FIRSTNAME</th>
                             <th>HOUSE</th>
                             <th>GENDER</th>
