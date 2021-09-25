@@ -13,6 +13,7 @@ const Student = {
     isPrefect: false,
     isInquis: false,
     isExpelled: false,
+    isHackedAlredy: false
 }
 
 export let allStudentVariables = {
@@ -28,14 +29,15 @@ export const mortenStudent = {
     firstname: "Morten",
     middlename: "Bo",
     lastname: "Sixhoej",
-    nickname: "Six",
+    nickname: '"Six"',
     gender: "Boy",
     house: "Ungdomshuset",
     bloodstatus: "Vampire",
     isPrefect: true,
     isInquis: false,
     isExpelled: false,
-    image: "/studentphotos/sixhoej_m.png"
+    image: "/studentphotos/sixhoej_m.png",
+    isHackedAlredy: true
 }
 
 let currentFilter = "*"
@@ -90,7 +92,6 @@ function capitalize(name) {
     return name.charAt(0).toUpperCase() + name.substring(1).toLowerCase()
 }
 
-// 	firstName | middleName | lastName | nickname | gender | house | isPureblood | isHalfblood | isPlainMuggle | isPrefect | isInquis
 function makeStudents(jsonObject) {
     console.log("Student in the making")
 

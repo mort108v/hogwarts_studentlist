@@ -207,21 +207,40 @@ export function hackTheSystem() {
     // Keep track of "If system is already hacked"
     isHacked = true
 
+    let hackAllStudents = list.allStudentVariables.allStudents
+
     // Inject self into studentlist
-    list.allStudentVariables.allStudents.push(list.mortenStudent)
-
-
+    hackAllStudents.push(list.mortenStudent)
 
     // Make halfbloods: Pure and Purebloods: random
+    hackAllStudents.forEach(student => {
+        student.bloodstatus === "Pure" ? "Half" : "Pure"
+        student.isHackedAlredy = true
+    })
+
+    hackAllStudents.forEach(student => {
+        if (hackAllStudents.isHackedAlredy) { return } else if (Math.random() * 2 > 1) {
+            student.bloodstatus = "Pure"
+            student.isHackedAlredy = true
+        }
+
+    })
 
     // Eject student from Inquisitoral Squad after some time and make it loud!
 
     list.buildList()
-
 }
+
+// function repeat(func, times) {
+//     func()
+//     times && --times && repeat(func, times)
+// }
+
+
 
 // cannot be expelled
 export function youCantExpellMe(student) {
+    console.log(student.firstname, " Can't be expelled")
 
     allConstants.dialogBoxExp.classList.add("show")
     const closeButtonExpelled = document.querySelector(".closebutton-exp")
