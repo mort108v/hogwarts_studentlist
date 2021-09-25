@@ -57,12 +57,12 @@ export function searchForStudent() {
         const searchString = e.target.value.toLowerCase()
 
         const filteredSearch = allStudentVariables.allStudents.filter((student) => {
-            return (
-                student.firstname.toLowerCase().includes(searchString) ||
-                student.lastname.toLowerCase().includes(searchString)
-            )
-        })
-
+                return (
+                    student.firstname.toLowerCase().includes(searchString) ||
+                    student.lastname.toLowerCase().includes(searchString)
+                )
+            })
+            // FIX CURRENT FILTER ISSUE HERE!
         displayList(filteredSearch)
     })
 }

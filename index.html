@@ -7,147 +7,159 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="css/hogwarts.css">
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="pics/favicon.png" />
     <script type=module src="js/hogwarts.js" defer></script>
     <title>11C.04.04_HackedHogwartsStudentList</title>
 </head>
 
 <body>
-    <h1 id="schoolname" class="">HOGWARTS STUDENT LIST</h1>
-    <!-- <div class="hacked none">
-        <h1 id="typewriter" class="typewritten">HACKWARTS SCHOOL OG DISPEAR AND DISHONOR!!</h1>
-        <div id="sounds">
-            <audio id="typekey1" src="audio/typekey1.mp3"></audio>
-            <audio id="typekey2" src="audio/typekey2.mp3"></audio>
-            <audio id="typespace" src="audio/typespace.mp3"></audio>
-            <audio id="typelast" src="audio/typelastkey.mp3"></audio>
-            <audio id="typereturn" src="audio/typecarriagereturn.mp3"></audio>
-        </div>
-    </div> -->
-    <div id="filterbuttons">
-        <button class="filter" data-action="filter" data-filter="*">ALL</button>
-        <button class="filter" data-action="filter" data-filter="prefect">PREFECTS</button>
-        <button class="filter" data-action="filter" data-filter="inquis">INQUISITORIAL SQUAD</button>
-        <button class="filter" data-action="filter" data-filter="pureblood">PUREBLOODS</button>
-        <button class="filter" data-action="filter" data-filter="muggle">MUGGLES</button>
-        <button class="filter" data-action="filter" data-filter="expelled">EXPELLED</button>
-        <div id="houses">
-            <div class="dropdown">
-                <button class="dropbtn">HOUSES</button>
-                <div class="dropdown-content">
-                    <button id="hufflepuff" class="filter" data-action="filter" data-filter="hufflepuff">HUFFLEPUFF</button>
-                    <button id="ravenclaw" class="filter" data-action="filter" data-filter="ravenclaw">RAVENCLAW</button>
-                    <button id="slytherin" class="filter" data-action="filter" data-filter="slytherin">SLYTHERIN</button>
-                    <button id="gryffindor" class="filter" data-action="filter" data-filter="gryffindor">GRYFFINDOR</button>
-                </div>
+    <!-- header>#splash>#title^nav^#searchwrapper^main>table#list^section#hidden>(#templates^#popups^#dialogs)^^footer -->
+    <header>
+        <div id="splash">
+            <div id="title">
+                <h1 id="schoolname" class="">HOGWARTS STUDENT LIST</h1>
             </div>
         </div>
+        <nav>
+            <div id="filterbuttons">
+                <button class="filter" data-action="filter" data-filter="*">ALL</button>
+                <button class="filter" data-action="filter" data-filter="prefect">PREFECTS</button>
+                <button class="filter" data-action="filter" data-filter="inquis">INQUISITORIAL SQUAD</button>
+                <button class="filter" data-action="filter" data-filter="pureblood">PUREBLOODS</button>
+                <button class="filter" data-action="filter" data-filter="muggle">MUGGLES</button>
+                <button class="filter" data-action="filter" data-filter="expelled">EXPELLED</button>
+                <div id="houses">
+                    <div class="dropdown">
+                        <button class="dropbtn">HOUSES</button>
+                        <div class="dropdown-content">
+                            <button id="hufflepuff" class="filter" data-action="filter" data-filter="hufflepuff">HUFFLEPUFF</button>
+                            <button id="ravenclaw" class="filter" data-action="filter" data-filter="ravenclaw">RAVENCLAW</button>
+                            <button id="slytherin" class="filter" data-action="filter" data-filter="slytherin">SLYTHERIN</button>
+                            <button id="gryffindor" class="filter" data-action="filter" data-filter="gryffindor">GRYFFINDOR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="searchwrapper">
+        <input type="text" name="searchbar" id="searchbar" placeholder="search for student first, or lastname" />
     </div>
-    <div id="searchWrapper">
-        <input type="text" name="searchBar" id="searchBar" placeholder="search for student first, or lastname" />
-    </div>
-    <table id="list">
-        <thead>
-            <tr id="sorting">
-                <th data-action="sort" data-sort-direction="asc" data-sort="firstname">FIRSTNAME</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="middlename">MIDDLENAME</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="lastname">LASTNAME</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="nickname">NICKNAME</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="gender">GENDER</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="house">HOUSE</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="bloodstatus">BLOOD</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="prefect">PRE ⭐</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="inquis">INQ 🏆</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- template will be copied and inserted here -->
-        </tbody>
-    </table>
+    <main>
+        <table id="list">
+            <thead>
+                <tr id="sorting">
+                    <th data-action="sort" data-sort-direction="asc" data-sort="firstname">FIRSTNAME</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="middlename">MIDDLENAME</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="lastname">LASTNAME</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="nickname">NICKNAME</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="gender">GENDER</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="house">HOUSE</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="bloodstatus">BLOOD</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="prefect">PRE ⭐</th>
+                    <th data-action="sort" data-sort-direction="asc" data-sort="inquis">INQ 🏆</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- template will be copied and inserted here -->
+            </tbody>
+        </table>
+    </main>
 
-    <template id="student">
-      <tr>
-        <td data-field="firstname">FIRSTNAME</td>
-        <td data-field="middlename">MIDDLENAME</td>
-        <td data-field="lastname">LASTNAME</td>
-        <td data-field="nickname">NICKNAME</td>
-        <td data-field="gender">GENDER</td>
-        <td data-field="house">HOUSE</td>
-        <td data-field="bloodstatus">BLOODSTATUS</td> 
-        <td data-field="image" data-image="false"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
-        <td data-field="prefect" data-action="toggle" data-prefect="false">⭐</td> 
-        <td data-field="inquis" data-action="toggle" data-inquis="false">🏆</td>
-    </tr>
-    </template>
-
-    <section id="studentpop" class="popupbox">
-        <div class="popupcontent">
-            <table id="poppoppop">
-                <thead>
-                    <button class="closebuttonpop">close</button>
-                    <tr>
-                        <th>IMAGE</th>
-                        <th>FIRSTNAME</th>
-                        <th>HOUSE</th>
-                        <th>GENDER</th>
-                        <th>BLOODSTATUS</th>
-                        <th>IS PREFECT⭐</th>
-                        <th>IS NAZI🏆</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- template will be copied and inserted here -->
-                </tbody>
-                <br><br>
-                <tfooter>
-                    <tr>
-                        <th><button data-makeaction="make-prefect" data-action="make">Make prefect</button></th>
-                        <th><button data-popaction="pop-prefect" data-action="pop">Remove prefect</button></th>
-                        <th></th>
-                        <th><button data-popaction="pop-expell" data-action="pop">Expell student </button></th>
-                        <th></th>
-                        <th><button data-makeaction="make-inquis" data-action="make">Make inquisitorial squad</button></th>
-                        <th><button data-popaction="pop-inquis" data-action="pop">Remove inquisitorial squad</button></th>
-                    </tr>
-                </tfooter>
-            </table>
+    <section id="templates">
+        <template id="student">
+                <tr>
+                  <td data-field="firstname">FIRSTNAME</td>
+                  <td data-field="middlename">MIDDLENAME</td>
+                  <td data-field="lastname">LASTNAME</td>
+                  <td data-field="nickname">NICKNAME</td>
+                  <td data-field="gender">GENDER</td>
+                  <td data-field="house">HOUSE</td>
+                  <td data-field="bloodstatus">BLOODSTATUS</td> 
+                  <td data-field="image" data-image="false"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
+                  <td data-field="prefect" data-action="toggle" data-prefect="false">⭐</td> 
+                  <td data-field="inquis" data-action="toggle" data-inquis="false">🏆</td>
+              </tr>
+              </template>
+        <template id="studentmodal">
+                <tr>
+                    <td data-field="image" data-image="true"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
+                    <td data-field="firstname">FIRSTNAME</td>
+                    <td data-field="house">HOUSE</td>
+                    <td data-field="gender">GENDER</td>
+                    <td data-field="bloodstatus">BLOODSTATUS</td>
+                    <td data-field="prefect"data-prefect="false">⭐</td>
+                    <td data-field="inquis" data-inquis="false">🏆</td>
+                </tr>
+            </template>
+    </section>
+    <section id="popups">
+        <div id="studentpop" class="popupbox">
+            <div class="popupcontent">
+                <table id="poppoppop">
+                    <thead>
+                        <button class="closebuttonpop">close</button>
+                        <tr>
+                            <th>IMAGE</th>
+                            <th>FIRSTNAME</th>
+                            <th>HOUSE</th>
+                            <th>GENDER</th>
+                            <th>BLOODSTATUS</th>
+                            <th>IS PREFECT⭐</th>
+                            <th>IS NAZI🏆</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- template will be copied and inserted here -->
+                    </tbody>
+                    <br><br>
+                    <tfooter>
+                        <tr>
+                            <th><button data-makeaction="make-prefect" data-action="make">Make prefect</button></th>
+                            <th><button data-popaction="pop-prefect" data-action="pop">Remove prefect</button></th>
+                            <th></th>
+                            <th><button data-popaction="pop-expell" data-action="pop">Expell student </button></th>
+                            <th></th>
+                            <th><button data-makeaction="make-inquis" data-action="make">Make inquisitorial squad</button></th>
+                            <th><button data-popaction="pop-inquis" data-action="pop">Remove inquisitorial squad</button></th>
+                        </tr>
+                    </tfooter>
+                </table>
+            </div>
         </div>
     </section>
-    <template id="studentmodal">
-        <tr>
-            <td data-field="image" data-image="true"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
-            <td data-field="firstname">FIRSTNAME</td>
-            <td data-field="house">HOUSE</td>
-            <td data-field="gender">GENDER</td>
-            <td data-field="bloodstatus">BLOODSTATUS</td>
-            <td data-field="prefect"data-prefect="false">⭐</td>
-            <td data-field="inquis" data-inquis="false">🏆</td>
-        </tr>
-    </template>
-    <!-- Dialogs for handling too many prefects -->
-    <div id="onlytwoprefects" class="dialog">
-        <div class="dialogcontent">
-            <button class="closebutton-pre">close</button>
-            <h1>You can only have two Prefects!</h1>
-            <h2>Remove one, before you appoint more</h2>
-            <p><button data-action="removepre1">REMOVE</button> <span class="student1" data-field="studentprefect1">NAME, the Student</span></p>
-            <p><button data-action="removepre2">REMOVE</button> <span class="student2" data-field="studentprefect2">NAME, the Student</span></p>
+    <section id="dialogs">
+        <!-- Dialogs for handling too many prefects -->
+        <div id="onlytwoprefects" class="dialog">
+            <div class="dialogcontent">
+                <button class="closebutton-pre">close</button>
+                <h1>You can only have two Prefects!</h1>
+                <h2>Remove one, before you appoint more</h2>
+                <p><button data-action="removepre1">REMOVE</button> <span class="student1" data-field="studentprefect1">NAME, the Student</span></p>
+                <p><button data-action="removepre2">REMOVE</button> <span class="student2" data-field="studentprefect2">NAME, the Student</span></p>
+            </div>
         </div>
-    </div>
-    <div id="onlyonekind" class="dialog">
-        <div class="dialogcontent">
-            <button class="closebutton-gen">close</button>
-            <h1>You can only have one Prefect of each gender</h1>
-            <h2>Remove the other if you want to appoint a new one</h2>
-            <p><button data-action="removegen1">REMOVE</button> <span class="studentgen1" data-field="studentgender">NAME, the Student</span></p>
+        <div id="onlyonekind" class="dialog">
+            <div class="dialogcontent">
+                <button class="closebutton-gen">close</button>
+                <h1>You can only have one Prefect of each gender</h1>
+                <h2>Remove the other if you want to appoint a new one</h2>
+                <p><button data-action="removegen1">REMOVE</button> <span class="studentgen1" data-field="studentgender">NAME, the Student</span></p>
+            </div>
         </div>
-    </div>
-    <div id="cannotbeinquis" class="dialog">
-        <div class="dialogcontent">
-            <button class="closebutton-inq">close</button>
-            <h1>DANGER!!</h1>
-            <h2>You cannot make <span class="student" data-field="thisstudent">NAME, the Student</span> Inquisitorial squad</h2>
+        <div id="cannotbeinquis" class="dialog">
+            <div class="dialogcontent">
+                <button class="closebutton-inq">close</button>
+                <h1>DANGER!!</h1>
+                <h2>You cannot make <span class="student" data-field="thisstudent">NAME, the Student</span> Inquisitorial squad</h2>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <footer><span>
+        <p>Page by s1xp4c design 2021 ©</p>
+    </span></footer>
+
 </body>
 
 </html>

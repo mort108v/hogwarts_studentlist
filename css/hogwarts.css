@@ -345,7 +345,7 @@ button.filter {
     z-index: 0;
 }
 
-#searchBar {
+#searchbar {
     width: 30vw;
     height: 32px;
     border-radius: 3px;
@@ -354,13 +354,13 @@ button.filter {
     font-size: 12px;
 }
 
-#searchWrapper {
+#searchwrapper {
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-#searchWrapper::after {
+#searchwrapper::after {
     content: '🔍';
     position: relative;
     top: 7px;
