@@ -24,9 +24,23 @@ export let allStudentVariables = {
     purebloods: []
 }
 
-let currentFilter = "*";
-let currentSort = "firstname";
-let currentSortDirection = "asc";
+export const mortenStudent = {
+    firstname: "Morten",
+    middlename: "Bo",
+    lastname: "Sixhoej",
+    nickname: "Six",
+    gender: "Boy",
+    house: "Ungdomshuset",
+    bloodstatus: "Vampire",
+    isPrefect: true,
+    isInquis: false,
+    isExpelled: false,
+    image: "/studentphotos/sixhoej_m.png"
+}
+
+let currentFilter = "*"
+let currentSort = "firstname"
+let currentSortDirection = "asc"
 
 export const searchBar = document.querySelector('#searchbar')
 

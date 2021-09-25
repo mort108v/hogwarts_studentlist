@@ -12,8 +12,10 @@ let allConstants = {
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
     dialogBox: document.querySelector(`#onlytwoprefects`),
     dialogBoxInq: document.querySelector(`#cannotbeinquis`),
-
+    hackFigure: document.querySelector("#hack")
 }
+
+let isHacked = false
 
 addEventListener("DOMContentLoaded", init())
 
@@ -23,9 +25,8 @@ function init() {
     listenForBTNclick()
 
     list.searchBar.addEventListener("click", list.searchForStudent)
+    allConstants.hackFigure.addEventListener("dblclick", isCTRLkeyDown)
 }
-
-
 
 function listenForBTNclick() {
     console.log("button listen")
@@ -182,4 +183,34 @@ function dialogBoxActions() {
 
 export function showDialogPrefects() {
     allConstants.dialogBox.classList.add("show")
+}
+
+function isCTRLkeyDown() {
+    // Keep track of "If system is already hacked"
+    if (isHacked) { alert("You can't hack the system again!") } else {
+        window.addEventListener('keydown', (e) => {
+            if (17 == e.keyCode) {
+                hackTheSystem()
+            } else {
+                console.log("Did you hold down the CTRL key on dbl-click?")
+            }
+        })
+    }
+}
+
+export function hackTheSystem() {
+    console.log("System has been hacked")
+        // Keep track of "If system is already hacked"
+    isHacked = true
+
+    // Inject self into studentlist
+    list.allStudentVariables.allStudents.push(list.mortenStudent)
+
+    // cannot be expelled
+
+    // Make halfbloods: Pure and Purebloods: random
+
+    // Eject student from Inquisitoral Squad after some time and make it loud!
+
+    list.buildList()
 }

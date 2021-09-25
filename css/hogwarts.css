@@ -9,6 +9,22 @@
 }
 
 
+/* ******* Hack ******* */
+
+#hack {
+    position: absolute;
+    z-index: 2;
+    padding-top: 20px;
+    width: 10vw;
+    filter: opacity(5%);
+}
+
+#hack:hover {
+    filter: opacity(15%);
+    cursor: pointer;
+}
+
+
 /* ***** FONTS ***** */
 
 @font-face {
@@ -467,7 +483,7 @@ button.filter {
 }
 
 #searchbar {
-    width: 20vw;
+    width: 400px;
     height: 28px;
     border-radius: 3px;
     border: 1px solid #d11cc8;
