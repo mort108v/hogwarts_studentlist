@@ -25,7 +25,7 @@ function init() {
     listenForBTNclick()
 
     list.searchBar.addEventListener("click", list.searchForStudent)
-    allConstants.hackFigure.addEventListener("dblclick", isCTRLkeyDown)
+    allConstants.hackFigure.addEventListener("dblclick", isCTRLkeyPressed)
 }
 
 function listenForBTNclick() {
@@ -185,22 +185,26 @@ export function showDialogPrefects() {
     allConstants.dialogBox.classList.add("show")
 }
 
-function isCTRLkeyDown() {
-    // Keep track of "If system is already hacked"
-    if (isHacked) { alert("You can't hack the system again!") } else {
-        window.addEventListener('keydown', (e) => {
-            if (17 == e.keyCode) {
-                hackTheSystem()
+function isCTRLkeyPressed() {
+
+    // Listen for CTRL key event
+    window.addEventListener('keydown', (e) => {
+        if (17 == e.keyCode) {
+
+            // Keep track of "If system is already hacked"
+            if (isHacked) {
+                alert("You can't hack the system again!")
             } else {
-                console.log("Did you hold down the CTRL key on dbl-click?")
+                hackTheSystem()
             }
-        })
-    }
+        }
+    })
 }
 
 export function hackTheSystem() {
     console.log("System has been hacked")
-        // Keep track of "If system is already hacked"
+
+    // Keep track of "If system is already hacked"
     isHacked = true
 
     // Inject self into studentlist
@@ -213,4 +217,5 @@ export function hackTheSystem() {
     // Eject student from Inquisitoral Squad after some time and make it loud!
 
     list.buildList()
+
 }
