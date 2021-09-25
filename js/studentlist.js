@@ -1,6 +1,6 @@
 "use strict"
 
-import { displayList, showDialogPrefects, inputPrefects, cannotMakeInquisDialog } from "./hogwarts.js";
+import { displayList, showDialogPrefects, inputPrefects, cannotMakeInquisDialog, youCantExpellMe, isHacked } from "./hogwarts.js";
 
 const Student = {
     firstname: " ",
@@ -175,7 +175,6 @@ function sortStudents(listOfStudents) {
 }
 
 // Filter students
-// 	house | responsibilities | expelled | nonExpelled
 
 export function selectFilter(filter) {
     currentFilter = filter
@@ -268,20 +267,21 @@ function isMuggle(student) {
     if (student.bloodstatus === "Half") return true
 }
 
-// function isExpelled(student) {
-//     if (student.isExpelled) return true
-// }
-
 export function expellStudent(student) {
 
-    student.isExpelled = true
-    let allStudents = allStudentVariables.allStudents
+    // If student is me - Fuck off
+    if (isHacked) {
+        youCantExpellMe(student)
+    } else {
 
-    let studentToExpell = allStudents.indexOf(student)
+        student.isExpelled = true
+        let allStudents = allStudentVariables.allStudents
 
-    allStudents.splice(studentToExpell, 1)
-    allStudentVariables.expelledStudents.push(student)
+        let studentToExpell = allStudents.indexOf(student)
 
+        allStudents.splice(studentToExpell, 1)
+        allStudentVariables.expelledStudents.push(student)
+    }
 }
 
 export function removeStudentAsPrefect(student) {

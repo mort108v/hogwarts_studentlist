@@ -342,6 +342,27 @@ button.filter {
     position: relative;
 }
 
+#cannotbeexpelled.dialog.show {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .4);
+    background-image: url(/studentphotos/anonymous.png);
+}
+
+#cannotbeexpelled.dialogcontent {
+    color: whitesmoke;
+    background-color: rgba(185, 33, 172, 0.562);
+    font-family: 'Harry-Potter';
+    padding: 10vw 8vw 8vw 8vw;
+    position: relative;
+}
+
 .dialog h1 {
     margin: 0;
     font-size: 130%;

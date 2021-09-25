@@ -12,10 +12,11 @@ let allConstants = {
     sortButtons: document.querySelectorAll(`[data-action="sort"]`),
     dialogBox: document.querySelector(`#onlytwoprefects`),
     dialogBoxInq: document.querySelector(`#cannotbeinquis`),
+    dialogBoxExp: document.querySelector(`#cannotbeexpelled`),
     hackFigure: document.querySelector("#hack")
 }
 
-let isHacked = false
+export let isHacked = false
 
 addEventListener("DOMContentLoaded", init())
 
@@ -153,7 +154,6 @@ function dialogBoxActions() {
     closeButtonPrefect.addEventListener("click", hideDialogPrefects)
 
     const removePrefect1 = document.querySelector("[data-action=removepre1]")
-
     const removePrefect2 = document.querySelector("[data-action=removepre2]")
 
     let prefect1 = list.allStudentVariables.prefects[0]
@@ -210,7 +210,7 @@ export function hackTheSystem() {
     // Inject self into studentlist
     list.allStudentVariables.allStudents.push(list.mortenStudent)
 
-    // cannot be expelled
+
 
     // Make halfbloods: Pure and Purebloods: random
 
@@ -218,4 +218,18 @@ export function hackTheSystem() {
 
     list.buildList()
 
+}
+
+// cannot be expelled
+export function youCantExpellMe(student) {
+
+    allConstants.dialogBoxExp.classList.add("show")
+    const closeButtonExpelled = document.querySelector(".closebutton-exp")
+    closeButtonExpelled.addEventListener("click", hideDialogExpelled)
+
+    document.querySelector("[data-field=student-to-expell]").textContent = student.firstname + " " + student.lastname
+}
+
+function hideDialogExpelled() {
+    allConstants.dialogBoxExp.classList.remove("show")
 }
