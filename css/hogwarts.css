@@ -542,3 +542,23 @@ footer {
     padding-top: 55vh;
     position: relative;
 }
+
+#aboutinfolist tbody {
+    background-color: transparent;
+    color: whitesmoke;
+    padding: 10px 10px 10px 10px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+#aboutinfolist tbody tr {
+    text-align: left;
+    padding: 3px;
+}
+
+#aboutinfolist {
+    position: fixed;
+    color: whitesmoke;
+    margin-left: 88vw;
+    margin-top: -15vw;
+}

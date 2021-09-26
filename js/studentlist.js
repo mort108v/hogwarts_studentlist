@@ -1,6 +1,6 @@
 "use strict"
 
-import { displayList, showDialogPrefects, inputPrefects, cannotMakeInquisDialog, youCantExpellMe, isHacked, randomBackgroundColorOdd } from "./hogwarts.js";
+import { displayList, showDialogPrefects, inputPrefects, cannotMakeInquisDialog, youCantExpellMe, isHacked, randomBackgroundColorOdd, prepareAboutInfo } from "./hogwarts.js";
 
 const Student = {
     firstname: " ",
@@ -223,6 +223,8 @@ function toggleInquis(student) {
 }
 
 export function buildList() {
+
+    prepareAboutInfo()
 
     if (isHacked) { randomBackgroundColorOdd() }
 

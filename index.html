@@ -47,7 +47,6 @@
 
             </div>
         </nav>
-
     </header>
     <div id="houses">
         <div class="dropdown">
@@ -64,6 +63,16 @@
         <input type="text" name="searchbar" id="searchbar" placeholder="search for student first, or lastname" />
     </section>
     <main>
+        <table id="aboutinfolist">
+            <thead>
+                <tr id="numbers">
+                    <th class="all-numbers"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Numbers template will be copied and inserted here -->
+            </tbody>
+        </table>
         <table id="list">
             <thead>
                 <tr id="sorting">
@@ -98,7 +107,21 @@
                   <td data-field="prefect" data-action="toggle" data-prefect="false">⭐</td> 
                   <td data-field="inquis" data-action="toggle" data-inquis="false">🏆</td>
               </tr>
-              </template>
+        </template>
+        <template id="aboutinfo">
+                <tr>
+                  <tr data-field="allstudentsnumber"></tr>
+                  <tr data-field="empty"></tr>
+                  <tr data-field="hufflepuffnumber"></tr>
+                  <tr data-field="slytherinnumber"></tr>
+                  <tr data-field="gryffindornumber"></tr>
+                  <tr data-field="ravenclawnumber"></tr>
+                  <tr data-field="empty"></tr>
+                  <tr data-field="prefectsnumber"></tr>
+                  <tr data-field="inquisnumber"></tr> 
+                  <tr data-field="expellednumber"></tr> 
+              </tr>
+        </template>
         <template id="studentmodal">
                 <tr>
                     <td data-field="image" data-image="true"><img type="image" src="" alt="" width="100" height="100" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>

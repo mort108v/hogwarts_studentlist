@@ -24,7 +24,7 @@ const returnSound = document.getElementById("typereturn")
 
 let typed
 let nthletter = 0
-let typingSpeed = 200
+let typingSpeed = 150
 let textToType = document.querySelector(".typewritten")
 let textToReplace = document.querySelector(".backtoschool")
 
@@ -36,6 +36,7 @@ function init() {
 
     list.loadJSON()
     listenForBTNclick()
+    prepareAboutInfo()
 
     list.searchBar.addEventListener("click", list.searchForStudent)
     allConstants.hackFigure.addEventListener("dblclick", isCTRLkeyPressed)
@@ -238,9 +239,7 @@ export function hackTheSystem() {
 
     })
 
-
     // Let user know system is hacked with typewriter header and random colorchanges
-
     randomBackgroundColorOdd()
         // Fetch txt from HTML
     typed = textToType.innerHTML;
@@ -258,8 +257,6 @@ export function hackTheSystem() {
 //     func()
 //     times && --times && repeat(func, times)
 // }
-
-
 
 // cannot be expelled
 export function youCantExpellMe(student) {
@@ -356,4 +353,66 @@ function randomBackgroundColorEven() {
 
         // setTimeout(randomBackgroundColorOdd, 5000, 3)
     });
+}
+
+export function prepareAboutInfo() {
+    document.querySelector("#aboutinfolist tbody").innerHTML = ""
+
+    let numberdata = {
+        hufflepuffnumber: " ",
+        slytherinnumber: " ",
+        gryffindornumber: " ",
+        ravenclawnumber: " ",
+        allstudentsnumber: " ",
+        prefectsnumber: " ",
+        inquisnumber: " ",
+        expellednumber: " ",
+        empty: " *----------------* "
+    }
+
+    // let studentsHouse = list.allStudentVariables.allStudents
+    let studentsPrefects = list.allStudentVariables.prefects
+    let studentsInquis = list.allStudentVariables.inquisitorialSquad
+    let studentsAll = list.allStudentVariables.allStudents
+    let studentsExpelled = list.allStudentVariables.expelledStudents
+
+    numberdata.hufflepuffnumber = list.allStudentVariables.allStudents.filter(s => s.house === "HufflePuff").length
+    numberdata.slytherinnumber = list.allStudentVariables.allStudents.filter(s => s.house === "Slytherin").length
+    numberdata.gryffindornumber = list.allStudentVariables.allStudents.filter(s => s.house === "Gryffindor").length
+    numberdata.ravenclawnumber = list.allStudentVariables.allStudents.filter(s => s.house === "Ravenclaw").length
+
+    // let hufflepuffs = studentsHouse.filter("Hufflepuf")
+    // let slytherins = studentsHouse.filter("Hufflepuf")
+    // let griffindors = studentsHouse.filter("Hufflepuf")
+    // let ravenclaws = studentsHouse.filter("Hufflepuf")
+
+    // numberdata.hufflepuffnumber = hufflepuffs.length
+    // numberdata.slytherinnumber = slytherins.length
+    // numberdata.griffindornumber = griffindors.length
+    // numberdata.ravenclawnumber = ravenclaws.length
+
+    numberdata.allstudentsnumber = studentsAll.length
+    numberdata.prefectsnumber = studentsPrefects.length
+    numberdata.inquisnumber = studentsInquis.length
+    numberdata.expellednumber = studentsExpelled.length
+
+    displayAboutInfo(numberdata)
+}
+
+function displayAboutInfo(numberdata) {
+    // create clone
+    const numberClone = document.querySelector("template#aboutinfo").content.cloneNode(true)
+
+    numberClone.querySelector("[data-field=hufflepuffnumber]").textContent = "Hufflepuff: " + numberdata.hufflepuffnumber
+    numberClone.querySelector("[data-field=slytherinnumber]").textContent = "Slytherin: " + numberdata.slytherinnumber
+    numberClone.querySelector("[data-field=gryffindornumber]").textContent = "Gryffindor: " + numberdata.gryffindornumber
+    numberClone.querySelector("[data-field=ravenclawnumber]").textContent = "Ravenclaw: " + numberdata.ravenclawnumber
+    numberClone.querySelector("[data-field=allstudentsnumber]").textContent = "All Students: " + numberdata.allstudentsnumber
+    numberClone.querySelector("[data-field=prefectsnumber]").textContent = "Prefects: " + numberdata.prefectsnumber
+    numberClone.querySelector("[data-field=inquisnumber]").textContent = "Inquisitorial: " + numberdata.inquisnumber
+    numberClone.querySelector("[data-field=expellednumber]").textContent = "Expelled: " + numberdata.expellednumber
+    numberClone.querySelector("[data-field=empty]").textContent = numberdata.empty
+
+    // append clone to list
+    document.querySelector("#aboutinfolist tbody").appendChild(numberClone)
 }
