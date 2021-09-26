@@ -25,10 +25,8 @@ const returnSound = document.getElementById("typereturn")
 let typed
 let nthletter = 0
 let typingSpeed = 200
-let title = document.querySelector("#title")
 let textToType = document.querySelector(".typewritten")
 let textToReplace = document.querySelector(".backtoschool")
-let hackDiv = document.querySelector(".hacked")
 
 export let isHacked = false
 
@@ -241,9 +239,10 @@ export function hackTheSystem() {
     })
 
 
-    // Let user know system is hacked with typewriter header
+    // Let user know system is hacked with typewriter header and random colorchanges
 
-    // Fetch txt from HTML
+    randomBackgroundColorOdd()
+        // Fetch txt from HTML
     typed = textToType.innerHTML;
     // Clear title text
     textToReplace.innerHTML = "";
@@ -324,4 +323,37 @@ function playSound() {
             charTwoSound.play()
         }
     }
+}
+
+// RANDOM BACKGROUND COLORS
+export function randomBackgroundColorOdd() {
+
+    let r = Math.floor(Math.random() * 128)
+    let g = Math.floor(Math.random() * 256)
+    let b = Math.floor(Math.random() * 222)
+    let bgColorOdd = `rgba(${r},${g},${b}, 1)`
+
+    //
+    const listPointerOdd = document.querySelectorAll('#list tbody tr:nth-child(odd) td')
+    listPointerOdd.forEach((row) => {
+        row.style.background = bgColorOdd
+
+        setTimeout(randomBackgroundColorEven, 500)
+    });
+}
+
+function randomBackgroundColorEven() {
+
+    let r = Math.floor(Math.random() * 201)
+    let g = Math.floor(Math.random() * 188)
+    let b = Math.floor(Math.random() * 133)
+    let bgColorEven = `rgba(${r},${g},${b}, 1)`
+
+    //
+    const listPointerOdd = document.querySelectorAll('#list tbody tr:nth-child(even) td')
+    listPointerOdd.forEach((row) => {
+        row.style.background = bgColorEven
+
+        // setTimeout(randomBackgroundColorOdd, 5000, 3)
+    });
 }
