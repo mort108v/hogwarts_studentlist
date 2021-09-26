@@ -125,10 +125,6 @@ nav {
     padding-top: 1%;
 }
 
-#hack {
-    z-index: 2;
-}
-
 button.filter {
     width: 8%;
     margin-bottom: 10px;
