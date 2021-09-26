@@ -103,7 +103,7 @@ h1 {
 }
 
 #splash {
-    background-image: url(../pics/splash.webp);
+    background-image: url("../pics/splash.webp");
     width: 100vw;
     margin: 0 auto;
     height: 100%;
