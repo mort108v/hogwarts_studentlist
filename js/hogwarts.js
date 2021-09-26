@@ -16,6 +16,20 @@ let allConstants = {
     hackFigure: document.querySelector("#hack")
 }
 
+const charOneSound = document.getElementById("typekey1")
+const charTwoSound = document.getElementById("typekey2")
+const spaceSound = document.getElementById("typespace")
+const lastKeySound = document.getElementById("typelast")
+const returnSound = document.getElementById("typereturn")
+
+let typed
+let nthletter = 0
+let typingSpeed = 200
+let title = document.querySelector("#title")
+let textToType = document.querySelector(".typewritten")
+let textToReplace = document.querySelector(".backtoschool")
+let hackDiv = document.querySelector(".hacked")
+
 export let isHacked = false
 
 addEventListener("DOMContentLoaded", init())
@@ -226,6 +240,16 @@ export function hackTheSystem() {
 
     })
 
+
+    // Let user know system is hacked with typewriter header
+
+    // Fetch txt from HTML
+    typed = textToType.innerHTML;
+    // Clear title text
+    textToReplace.innerHTML = "";
+    // Start Loop function
+    typewriterLoop(typed);
+
     // Eject student from Inquisitoral Squad after some time and make it loud!
 
     list.buildList()
@@ -240,7 +264,7 @@ export function hackTheSystem() {
 
 // cannot be expelled
 export function youCantExpellMe(student) {
-    console.log(student.firstname, " Can't be expelled")
+    console.log(student.firstname, "Can't be expelled")
 
     allConstants.dialogBoxExp.classList.add("show")
     const closeButtonExpelled = document.querySelector(".closebutton-exp")
@@ -251,4 +275,53 @@ export function youCantExpellMe(student) {
 
 function hideDialogExpelled() {
     allConstants.dialogBoxExp.classList.remove("show")
+}
+
+function typewriterLoop() {
+
+    // title.classList.add("hide")
+    // hackDiv.classList.add("show")
+
+    console.log(typed)
+    console.log("This letter is number (" + nthletter + ")")
+
+    if (nthletter < typed.length) {
+        console.log("The length of string is = " + typed.length)
+
+        // - Set textContent to substring of 0 to N
+        textToReplace.textContent += typed.charAt(nthletter)
+            // Imcrement N (++) 
+        nthletter++;
+        console.log(nthletter)
+
+        playSound(nthletter)
+
+        // Wait before calling loop again
+        setTimeout(typewriterLoop, typingSpeed)
+    }
+}
+
+function playSound() {
+    console.log("PlaySound")
+
+    let spaceBar = typed.indexOf(' ')
+    let lastLetter = typed.length
+    console.log(lastLetter)
+
+    if (nthletter === lastLetter) {
+        lastKeySound.play()
+        setTimeout(typingSpeed)
+        returnSound.play()
+
+    } else if (nthletter == spaceBar) {
+        spaceSound.play()
+
+    } else {
+        let play = Math.random()
+        if (play < .5) {
+            charOneSound.play()
+        } else {
+            charTwoSound.play()
+        }
+    }
 }
