@@ -103,7 +103,7 @@ h1 {
 }
 
 #splash {
-    background-image: url("/pics/splash.webp");
+    background-image: url("../pics/splash.webp");
     width: 100vw;
     margin: 0 auto;
     height: 100%;
@@ -352,7 +352,7 @@ button.filter {
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, .4);
-    background-image: url("/studentphotos/anonymous.png");
+    background-image: url("../studentphotos/anonymous.png");
 }
 
 #cannotbeexpelled.dialogcontent {
